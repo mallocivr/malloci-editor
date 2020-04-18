@@ -2,7 +2,7 @@ import React from "react"
 
 const exhibit = () => (
     <div id="exhibit">
-        placeholder
+        {/* placeholder */}
     </div>
 )
 

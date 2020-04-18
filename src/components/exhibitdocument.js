@@ -2,7 +2,7 @@ import React from "react"
 
 const exhibitdocument = () => (
     <div id="exhibitdocument">
-        placeholder
+        {/* placeholder */}
     </div>
 )
 
