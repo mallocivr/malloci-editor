@@ -36,6 +36,10 @@ const IndexPage = () => (
       </Col>
     </Row>
 
+    <script>
+      
+    </script>
+
   </Layout>
 )
 

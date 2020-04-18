@@ -5,9 +5,17 @@ import { UploadOutlined } from '@ant-design/icons';
 
 const props = {
     name: 'file',
-    action: 'https://www.google.com',
-    headers: {
-      authorization: 'authorization-text',
+    multiple: true,
+    customRequest(data) {
+      let reader = new FileReader();      
+      reader.readAsBinaryString(data.file);
+      reader.onload = function(e) {
+          let bits = e.target.result; 
+
+          let src = `img/${data.file.name}`
+
+          localStorage.setItem(src, bits)
+      }
     },
     onChange(info) {
       if (info.file.status !== 'uploading') {
