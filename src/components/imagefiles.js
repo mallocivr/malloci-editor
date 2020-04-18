@@ -26,17 +26,7 @@ const props = {
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
       }
-    },
-    // previewFile(file) {
-    //     console.log('Your upload file:', file);
-    //     // Your process logic. Here we just mock to the same file
-    //     return fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {
-    //       method: 'POST',
-    //       body: file,
-    //     })
-    //       .then(res => res.json())
-    //       .then(({ thumbnail }) => thumbnail);
-    //   },
+    }
   };
   
 const ImageFiles = () => (

@@ -15,11 +15,11 @@ const exhibitmaster = () => (
     <div className="card-container">
         <Tabs onChange={callback} type="card">
             <TabPane tab="Exhibit" key="1">
-                <ExhibitDocument />
+                <Exhibit />
             </TabPane>
     
             <TabPane tab="Document" key="2">
-                <Exhibit />
+                <ExhibitDocument />
             </TabPane>
         
     </Tabs>
