@@ -14,7 +14,7 @@ function callback(key) {
 const exhibitmaster = () => (
     <div className="card-container">
         <Tabs onChange={callback} type="card">
-            <TabPane tab="Exhibit" key="1">
+            <TabPane id="exhibit_pane" tab="Exhibit" key="1">
                 <Exhibit />
             </TabPane>
     

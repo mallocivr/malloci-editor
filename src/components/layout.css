@@ -9,7 +9,6 @@
 
 [data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-content,
 .card-container > .ant-tabs-card > .ant-tabs-content {
-  height: 90vh;
   margin-top: -16px;
 }
 
@@ -36,11 +35,7 @@
   background: #fafafa;
 }
 
-[data-theme="compact"] .ant-tabs-tabpane > .ant-tabs-tabpane-active {
-  height:90vh;
-}
-
-#textareaheight {
-    height: 100%; 
-    box-sizing: border-box;
+#editor, #exhibit {
+  height:80vh;    
+  box-sizing: border-box;
 }

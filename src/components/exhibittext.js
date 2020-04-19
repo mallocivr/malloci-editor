@@ -14,13 +14,11 @@ function callback(key) {
 const exhibittext = () => (
     <div className="card-container">
         <Tabs onChange={callback} type="card">
-            <TabPane tab="Markdown" key="1">
-                <TextArea id="textareaheight" placeholder="Markdown content to generate the VR exhibit goes here."></TextArea>
+            <TabPane  tab="Markdown" key="1">
+                <TextArea id="editor" placeholder="Markdown content to generate the VR exhibit goes here."></TextArea>
             </TabPane>
-        
     </Tabs>
-
     </div>
 )
 
-export default exhibittext
+export default exhibittext  

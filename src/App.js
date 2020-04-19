@@ -1,19 +1,19 @@
-import React, {useState} from "react"
+import React, {useState} from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-import ExhibitMaster from "../components/exhibitmaster"
-import ExhibitText from "../components/exhibittext"
-import ImageFiles from "../components/imagefiles"
+import ExhibitMaster from "./components/exhibitmaster"
+import ExhibitText from "./components/exhibittext"
+import ImageFiles from "./components/imagefiles"
 import { Button } from 'antd';
 import { Row, Col, Tabs } from 'antd';
 
-import Layout from "../components/layout"
+import Layout from "./components/layout"
 
-import SEO from "../components/seo"
+import VRMD from "./malloci/vrmd-parser"
 
-import VRMD from "../malloci/vrmd-parser"
-
-import ExhibitDocument from "./exhibitdocument"
-import Exhibit from "./exhibit"
+import ExhibitDocument from "./components/exhibitdocument"
+import Exhibit from "./components/exhibit"
 
 const { TabPane } = Tabs;
 
@@ -21,11 +21,10 @@ function callback(key) {
   console.log(key);
 }
 
-const IndexPage = () => {
 
-  const [museumTree, setMuseumTree] = useState({rooms: [{name:"1"}, {name:"2"}]})
-  console.log(museumTree);
-  
+function App() {
+
+  const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
 
   const updateExhibit = () => {
   
@@ -33,14 +32,11 @@ const IndexPage = () => {
     const editor = document.getElementById('editor')
   
     let tree = vrmdParser.parse(editor.value)
-    console.log("build exhibit", editor.value);
     setMuseumTree(tree)
   }
   
-  return(
-
-  <Layout>
-    <SEO title="Malloci Editor" />
+  return (
+   <Layout>
     <Row>
       <Col className="gutter-col" span={12}>
           <div className="gutter-row" id="exhibittext">
@@ -48,7 +44,7 @@ const IndexPage = () => {
           </div>
 
           <div className="gutter-row">
-            <Button onClick={() => {updateExhibit()}} type="primary">Build</Button>
+            <Button onClick={() => {updateExhibit()}} id="build-exhibit" type="primary">Build</Button>
           </div>
         
           <div className="gutter-row" id="imageupload">
@@ -57,11 +53,11 @@ const IndexPage = () => {
         
       </Col>
       <Col className="gutter-col" span={12}>
-        <div id="exhibitmaster">
+      <div id="exhibitmaster">
           <div className="card-container">
             <Tabs onChange={callback} type="card">
                 <TabPane id="exhibit_pane" tab="Exhibit" key="1">
-                    <Exhibit tree= {{museumTree}} />
+                    <Exhibit tree= {museumTree} />
                 </TabPane>
         
                 <TabPane tab="Document" key="2">
@@ -74,8 +70,7 @@ const IndexPage = () => {
     </Row>
 
   </Layout>
-)}
+  );
+}
 
-
-
-export default IndexPage
+export default App;
