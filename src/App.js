@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 
 import ExhibitMaster from "./components/exhibitmaster"
 import ExhibitText from "./components/exhibittext"
@@ -36,7 +36,9 @@ function App() {
   }
   
   return (
+    
    <Layout>
+     
     <Row>
       <Col className="gutter-col" span={12}>
           <div className="gutter-row" id="exhibittext">
