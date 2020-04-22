@@ -39,3 +39,16 @@
   height:80vh;    
   box-sizing: border-box;
 }
+
+.markdown-container {
+  margin-bottom: 16px;
+}
+
+#headerstyle {
+  font-weight:bold;
+}
+
+#panelstyle {
+  white-space: pre-wrap;
+  font-weight:normal;
+}
