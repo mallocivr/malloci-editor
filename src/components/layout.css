@@ -35,8 +35,13 @@
   background: #fafafa;
 }
 
-#editor, #exhibit {
+#exhibit {
   height:80vh;    
+  box-sizing: border-box;
+}
+
+#editor {
+  height:73vh;    
   box-sizing: border-box;
 }
 
@@ -48,7 +53,25 @@
   font-weight:bold;
 }
 
+#headerstyle > p {
+  padding-bottom: 2px;
+}
+
 #panelstyle {
   white-space: pre-wrap;
   font-weight:normal;
+
+}
+
+.p #panelstyle {
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+.description {
+  margin-left: 32px;
+}
+
+.ant-page-header-heading-title {
+  margin-left: 7px;
 }

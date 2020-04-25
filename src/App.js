@@ -1,78 +1,85 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
-// import './App.css';
-
-import ExhibitMaster from "./components/exhibitmaster"
-import ExhibitText from "./components/exhibittext"
-import ImageFiles from "./components/imagefiles"
-import { Button } from 'antd';
-import { Row, Col, Tabs } from 'antd';
-
-import Layout from "./components/layout"
-
-import VRMD from "./malloci/vrmd-parser"
-
-import ExhibitDocument from "./components/exhibitdocument"
-import Exhibit from "./components/exhibit"
-
-const { TabPane } = Tabs;
-
-function callback(key) {
-  console.log(key);
-}
+import React, {useState} from "react"
+import './App.css'
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { Menu } from 'antd';
+import Mallocieditor from "./pages/mallocieditor"
+import Home from "./pages/home"
+import Gallery from "./pages/gallery"
+import About from "./pages/about"
 
 
-function App() {
+const logo = "logo512.png"
 
-  const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
+class App extends React.Component {
+  // state = {
+  //   current: 'home',
+  // };
 
-  const updateExhibit = () => {
-  
-    const vrmdParser = new VRMD()
-    const editor = document.getElementById('editor')
-  
-    let tree = vrmdParser.parse(editor.value)
-    setMuseumTree(tree)
+  // handleClick = e => {
+  //   console.log('click ', e);
+  //   this.setState({
+  //     current: e.key,
+  //   });
+  // };
+
+  render() {
+    return (
+     <div id="navbar">
+       <img src={logo} id="logoformatting"></img>
+
+      <div id="mallocititle"><h2>Malloci</h2></div>
+
+
+    <Router>
+      <div id="menualign">
+        
+            <Menu mode="horizontal">
+              <Menu.Item key="home">
+                <NavLink to="/">
+                  Home
+      </NavLink>
+              </Menu.Item>
+              <Menu.Item key="gallery">
+              <NavLink to="gallery">
+              Gallery
+      </NavLink>
+    </Menu.Item>
+              <Menu.Item key="mallocieditor">
+                <NavLink to="mallocieditor">
+                  Demo
+      </NavLink>
+              </Menu.Item>
+              <Menu.Item key="about">
+              <NavLink to="about">
+                About us
+                </NavLink>
+    </Menu.Item>
+            </Menu>
+      </div>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/mallocieditor">
+            <Mallocieditor />
+          </Route>
+          <Route path="/gallery">
+            <Gallery />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+        </Switch>
+      </Router>
+      
+     </div>
+    );
   }
-  
-  return (
-    
-   <Layout>
-     
-    <Row>
-      <Col className="gutter-col" span={12}>
-          <div className="gutter-row" id="exhibittext">
-            <ExhibitText />
-          </div>
-
-          <div className="gutter-row">
-            <Button onClick={() => {updateExhibit()}} id="build-exhibit" type="primary">Build</Button>
-          </div>
-        
-          <div className="gutter-row" id="imageupload">
-            <ImageFiles></ImageFiles>
-          </div>
-        
-      </Col>
-      <Col className="gutter-col" span={12}>
-      <div id="exhibitmaster">
-          <div className="card-container">
-            <Tabs onChange={callback} type="card">
-                <TabPane id="exhibit_pane" tab="Exhibit" key="1">
-                    <Exhibit tree= {museumTree} />
-                </TabPane>
-        
-                <TabPane tab="Document" key="2">
-                    <ExhibitDocument />
-                </TabPane>
-          </Tabs>
-          </div>
-        </div>
-      </Col>
-    </Row>
-
-  </Layout>
-  );
 }
 
-export default App;
+export default App
