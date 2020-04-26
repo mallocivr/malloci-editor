@@ -10,6 +10,7 @@ import { Menu } from 'antd';
 import Mallocieditor from "./pages/mallocieditor"
 import Home from "./pages/home"
 import Gallery from "./pages/gallery"
+import Example from "./pages/example"
 import About from "./pages/about"
 
 
@@ -70,6 +71,9 @@ class App extends React.Component {
           </Route>
           <Route path="/gallery">
             <Gallery />
+          </Route>
+          <Route path="/exhibits/:exhibit">
+            <Example/>
           </Route>
           <Route path="/about">
             <About />
