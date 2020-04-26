@@ -17,15 +17,15 @@ const exhibit = (props) => {
           </a-assets>
           <a-light type="ambient" position="0 6 0" rotation="0 0 45"></a-light>
           <Entity id="rig"
-                    movement-controls="enabled: true; controls: keyboard"
+                    movement-controls={{enabled: true}}
                     position="2 0 1" 
                     rotation="0 180 0">
             <a-camera id="camera"
             look-controls="pointerLockEnabled: true">
-            <a-cursor></a-cursor>
+            {/* <a-cursor></a-cursor> */}
             </a-camera>
-          <Entity oculus-touch-controls="hand: left" teleport-controls="collisionEntities: .scenery; landingMaxAngle: 45; button: trigger; cameraRig: #rig; teleportOrigin: #camera;"></Entity>
-          <Entity oculus-touch-controls="hand: right" teleport-controls="collisionEntities: .scenery; landingMaxAngle: 45; button: trigger; cameraRig: #rig; teleportOrigin: #camera;"></Entity>
+          <Entity laser-controls={{hand: 'left'}} raycaster={{objects: '.audio', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
+          <Entity laser-controls={{hand: 'right'}} raycaster={{objects: '.audio', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
         </Entity>
         <Entity id="museum" 
                 malloci={{

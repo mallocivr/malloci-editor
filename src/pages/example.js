@@ -69,9 +69,9 @@ const Example = () => {
       <img className="heroimg" src={heroimg}></img>
       <div id="md_article" className="herotext">
         <ReactMarkdown source={md} renderers={{heading: HeadingRenderer}}/>
-        <Exhibit exhibitId="exhibit" tree= {museumTree} b64={false} debug={true}/>
       </div>
-    </div> 
+    </div>
+    <Exhibit exhibitId="exhibit" tree= {museumTree} b64={false} debug={true}/>
   </Layout>
 )};
 
