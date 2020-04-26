@@ -13,7 +13,7 @@ import Gallery from "./pages/gallery"
 import About from "./pages/about"
 
 
-const logo = "logo512.png"
+const logo = "logo.svg"
 
 class App extends React.Component {
   // state = {

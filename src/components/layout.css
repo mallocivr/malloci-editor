@@ -35,9 +35,13 @@
   background: #fafafa;
 }
 
-#exhibit {
+#preview {
   height:80vh;    
   box-sizing: border-box;
+}
+
+#md_article > p > img {
+  width: 100%
 }
 
 #editor {

@@ -66,7 +66,7 @@ function Mallocieditor() {
           <div className="card-container">
             <Tabs onChange={callback} type="card">
                 <TabPane id="exhibit_pane" tab="Exhibit" key="1">
-                    <Exhibit tree= {museumTree} />
+                    <Exhibit exhibitId="preview" tree={museumTree} b64={true} debug={true}/>
                 </TabPane>
         
                 <TabPane tab="Document" key="2">
