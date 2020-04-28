@@ -14,4 +14,4 @@ Malloci is platform agnostic, which means that exhibits created using Malloci ca
 ## The future is VR
 Encouraging this proliferation of VR has its advantages; in addition to breaking barriers to generating VR content, we want to make it available for more people to consume, too. As a medium, virtual reality lends itself to radical, creative, exciting ways of consuming content incomparable to reading text on a screen. The potential praxes are infinite.
 
-You can view this (and any other text that formatted like this one on the website) in VR by clicking on the [logo] next to it.
+You can view this (and any other text that formatted like this one on the website) in VR by clicking on the Malloci logo next to it.
