@@ -14,7 +14,7 @@ import Example from "./pages/example"
 import About from "./pages/about"
 
 
-const logo = "logo.svg"
+const logo = "./logo192.png"
 
 class App extends React.Component {
   // state = {
