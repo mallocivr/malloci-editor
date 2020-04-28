@@ -79,3 +79,12 @@
 .ant-page-header-heading-title {
   margin-left: 7px;
 }
+
+#alertstyle {
+  margin: auto;
+  position: relative;
+  /* text-align: center; */
+  top: 50%;
+  width: 50%;
+  padding-bottom: 2%;
+}

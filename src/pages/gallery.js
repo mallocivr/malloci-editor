@@ -10,7 +10,7 @@ const { Meta } = Card;
 
 const Gallery = () => (
     <Layout >
-     <Header siteTitle={"Gallery"} ></Header>
+     <Header siteTitle={"The Malloci Gallery"} ></Header>
     <div className="description">
         <p>A curation of VR museums generated using Malloci.</p>
     </div>

@@ -4,11 +4,12 @@ import hljs from "highlight.js"
 import VRMD from "../malloci/vrmd-parser"
 import Layout from "../components/layout"
 import Exhibit from "../components/exhibit"
-import './home.css'
+import './museum.css'
+import { Typography } from 'antd';
 import ReactMarkdown from "react-markdown"
 
-const heroimg = '../logo.svg'
-const Home = () => {
+// const heroimg = '../logo.svg'
+const Museum = () => {
 
   let [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
   let[md, setMd] = useState('')
@@ -49,6 +50,7 @@ const Home = () => {
   
   return(
   <Layout >
+    <Typography >
     {/* <Header siteTitle={"Malloci"}></Header> */}
     {/* <Row id="hero">
       <Col className="heroimg" span={12}>
@@ -59,14 +61,15 @@ const Home = () => {
       </Col>
     </Row> */}
 
-    <div className="hero">
-      <img className="heroimg" src={heroimg}></img>
-      <div id="md_article" className="herotext">
+    <div className="museum">
+      {/* <img className="heroimg" src={heroimg}></img> */}
+      <div id="md_article" className="museumtext">
         <ReactMarkdown source={md} renderers={{heading: HeadingRenderer}}/>
       </div>
     </div>
     <Exhibit exhibitId="exhibit" tree= {museumTree} b64={false} debug={true}/>
+    </Typography>
   </Layout>
 )};
 
-export default Home
+export default Museum

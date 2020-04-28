@@ -6,7 +6,7 @@ import ImageFiles from "../components/imagefiles"
 import { Button } from 'antd';
 import { Row, Col, Tabs } from 'antd';
 import Header from "../components/header";
-
+import { Alert } from 'antd';
 import Layout from "../components/layout"
 
 import VRMD from "../malloci/vrmd-parser"
@@ -38,6 +38,14 @@ function Mallocieditor() {
     
    <Layout >
      <Header siteTitle={"Malloci Editor"}></Header>
+     <div id="alertstyle">
+     <Alert 
+      message="Online only!"
+      description="This is an online editor: museums you create using this tool will not be saved! Please copy your text from the Markdown panel before you close your session."
+      type="info"
+      showIcon closable
+    />
+    </div>
      <Row>
      <Col classname="gutter-col">
         <div className="description">

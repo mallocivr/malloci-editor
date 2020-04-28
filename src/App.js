@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { Menu } from 'antd';
 import Mallocieditor from "./pages/mallocieditor"
-import Home from "./pages/home"
+import Museum from "./pages/museum"
 import Gallery from "./pages/gallery"
 import Example from "./pages/example"
 import About from "./pages/about"
@@ -40,37 +40,37 @@ class App extends React.Component {
       <div id="menualign">
         
             <Menu mode="horizontal">
-              <Menu.Item key="home">
+              <Menu.Item key="gallery">
                 <NavLink to="/">
-                  Home
+                  Gallery
       </NavLink>
               </Menu.Item>
-              <Menu.Item key="gallery">
-              <NavLink to="gallery">
-              Gallery
+              <Menu.Item key="museum">
+              <NavLink to="museum">
+              About Malloci
       </NavLink>
     </Menu.Item>
               <Menu.Item key="mallocieditor">
                 <NavLink to="mallocieditor">
-                  Demo
+                  Editor
       </NavLink>
               </Menu.Item>
               <Menu.Item key="about">
               <NavLink to="about">
-                About us
+                The team
                 </NavLink>
     </Menu.Item>
             </Menu>
       </div>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Gallery />
           </Route>
           <Route exact path="/mallocieditor">
             <Mallocieditor />
           </Route>
-          <Route path="/gallery">
-            <Gallery />
+          <Route path="/museum">
+            <Museum />
           </Route>
           <Route path="/exhibits/:exhibit">
             <Example/>
