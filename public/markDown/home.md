@@ -3,8 +3,9 @@
 *A MarkDown parser for WebVR.*
 ​
 ## Intro
-Malloci is a set of tools to help non-developers create Web-based VR content. Currently, creating a VR experience for the web requires a strong working knowledge of web development, game development, or both. This makes for a pretty steap learning curve, and results in a very limited amount of content.
+Malloci is a set of tools to help non-developers create Web-based VR content. Currently, creating a VR experience for the web requires a strong working knowledge of web development, game development, or both. This makes for a pretty steep learning curve, and results in a very limited amount of content.
 ​
+
 Malloci attempts to lower this barrier by allowing users to create informational WebVR content using MarkDown instead.
 
 ## Platform agnostic
