@@ -55,11 +55,11 @@ class App extends React.Component {
                   Editor
       </NavLink>
               </Menu.Item>
-              <Menu.Item key="about">
+              {/* <Menu.Item key="about">
               <NavLink to="/TheTeam">
                 The team
                 </NavLink>
-    </Menu.Item>
+    </Menu.Item> */}
             </Menu>
       </div>
         <Switch>
