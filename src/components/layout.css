@@ -40,6 +40,19 @@
   box-sizing: border-box;
 }
 
+#doc-preview {
+  height:80vh;
+  padding: 10px;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+#doc-preview > p > img {
+  width: 100%;
+}
+
+
+
 #md_article > p > img {
   width: 100%
 }

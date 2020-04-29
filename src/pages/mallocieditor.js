@@ -24,6 +24,7 @@ function callback(key) {
 function Mallocieditor() {
 
   const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
+  const [md, setMd] = useState('')  
 
   const updateExhibit = () => {
   
@@ -32,6 +33,7 @@ function Mallocieditor() {
   
     let tree = vrmdParser.parse(editor.value)
     setMuseumTree(tree)
+    setMd(vrmdParser.cleanedMD)
   }
   
   return (
@@ -78,7 +80,7 @@ function Mallocieditor() {
                 </TabPane>
         
                 <TabPane tab="Document" key="2">
-                    <ExhibitDocument />
+                    <ExhibitDocument md={md} />
                 </TabPane>
           </Tabs>
           </div>

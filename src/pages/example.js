@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react"
 import { useParams } from 'react-router-dom';
-import "react-markdown"
 import hljs from "highlight.js"
 import VRMD from "../malloci/vrmd-parser"
 import Layout from "../components/layout"
