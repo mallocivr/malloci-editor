@@ -15,7 +15,7 @@ const Gallery = () => (
         <p>A curation of VR museums generated using Malloci.</p>
     </div>
     <div className="mastercard">
-    <Link to="/exhibits/museums">
+    <Link to="/Exhibits/museums">
       <Card className="card-space"
         hoverable
         style={{ width: 300 }}

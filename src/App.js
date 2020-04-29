@@ -46,17 +46,17 @@ class App extends React.Component {
       </NavLink>
               </Menu.Item>
               <Menu.Item key="museum">
-              <NavLink to="museum">
+              <NavLink to="/museum">
               About Malloci
       </NavLink>
     </Menu.Item>
               <Menu.Item key="mallocieditor">
-                <NavLink to="mallocieditor">
+                <NavLink to="/mallocieditor">
                   Editor
       </NavLink>
               </Menu.Item>
               <Menu.Item key="about">
-              <NavLink to="about">
+              <NavLink to="/about">
                 The team
                 </NavLink>
     </Menu.Item>
@@ -69,13 +69,13 @@ class App extends React.Component {
           <Route exact path="/mallocieditor">
             <Mallocieditor />
           </Route>
-          <Route path="/museum">
+          <Route exact path="/museum">
             <Museum />
           </Route>
           <Route path="/exhibits/:exhibit">
             <Example/>
           </Route>
-          <Route path="/about">
+          <Route exact path="/about">
             <About />
           </Route>
         </Switch>

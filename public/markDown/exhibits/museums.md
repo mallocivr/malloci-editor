@@ -1,5 +1,7 @@
 # A journey through time - the history of museums
 
+$[ceiling](https://live.staticflickr.com/750/20998785236_450cd2b04e_b.jpg)
+
 > *Museums are more than containers of things; rather, they are complex reflections of the cultures that produced them, including their politics, social structures, and systems of thought - Dr. Elizabeth Rodini*
 
 Museums allow us to delve into the past and learn from the various cultural and technological developments of our ancestors. When we walk through the exhibits, we can admire pinnacles of human achievement and objects of ordinary use alike. As valuable as these artifacts are, we must not forget about the power of display, granted by museums and galleries. As Dr. Elizabeth Rodini put it, museums are more than containers of things; rather, they are complex reflections of the cultures that produced them, including their politics, social structures, and systems of thought. Today, we are going back in time to see how the museum as a concept evolved.
@@ -8,11 +10,13 @@ Museums allow us to delve into the past and learn from the various cultural and 
 
 ![Nine Muses](https://upload.wikimedia.org/wikipedia/commons/8/82/Nine_Muses_-_Samuel_Griswold_Goodrich_%281832%29.jpg) 
 
-Earliest collections of objects and sites of display could be traced back to ancient Rome  (where statuary and war booty were exhibited), medieval church treasuries (for sacred and valuable objects), and traditional Japanese shrines where small votive paintings were hung to draw good favor.
+> Earliest collections of objects and sites of display could be traced back to ancient Rome  (where statuary and war booty were exhibited), medieval church treasuries (for sacred and valuable objects), and traditional Japanese shrines where small votive paintings were hung to draw good favor.
 
+~
 ![Roman treasure displayed in a collection](https://static.mfah.com/app/images/c6368ce4-1f84-e611-80c2-0050569125fe.636105880516138182.jpg)
 
 ![Roman treasure displayed in a collection](https://live.staticflickr.com/2922/13515397215_32af3da192_b.jpg)
+~
 
 ![Japanese votive paintings](https://3.bp.blogspot.com/-_v3-6rUoaL8/UbZGHSFy-EI/AAAAAAAA6vU/WVF0kYdN4gg/s1600/daruma+fuku+ema.jpg) 
 
@@ -22,8 +26,9 @@ The assemblages of wonders and curiosities in sixteen and seventeen centuries we
 
 > Much like our museums—and differently from church treasuries and displays of war booty—Wunderkammern were intended to deepen people’s knowledge through the presentation of things.
 
-! [Ole Worm’s cabinet of curiosities] 
-(https://cdn.kastatic.org/ka-perseus-images/5df55509a6f4fa652e7e20bba7156ab4894f1436.jpg) 
+
+
+![Ole Worm’s cabinet of curiosities](https://cdn.kastatic.org/ka-perseus-images/5df55509a6f4fa652e7e20bba7156ab4894f1436.jpg) 
 
 ![Wunderkammern](https://upload.wikimedia.org/wikipedia/commons/8/8e/Johann_Georg_Hinz_001.jpg)
 
@@ -34,8 +39,12 @@ Wunderkammern included all kinds of objects - both natural and artificial. The r
 
 ![Special item](https://www.history.com/.image/t_share/MTYzMzg1MTg2NzE5OTAxMDcx/narwhal_horn.jpg)
 
+![Cabinet of curiosities, 1690s](//upload.wikimedia.org/wikipedia/commons/thumb/8/82/Cabinet_of_Curiosities_1690s_Domenico_Remps.jpg/800px-Cabinet_of_Curiosities_1690s_Domenico_Remps.jpg)
+
+> Wunderkammern included all kinds of objects - both natural and artificial. The rarest and extraordinary objects were amongst the most valued, but apart from that there was little or no hierarchy.
 
 ### Collection of Francesco I de’ Medici of Florence
+
 
 
 A vault room resembling a jewelry box, the Studiolo Francesco I de’ Medici is where the Duke used to study and collect his rare and precious things he picked up during his travels all over the world. The collection was stored in about 20 cabinets that were distributed along the four walls of the room; each cabinet was illustrated with a panel that, in some way, represented what could be found inside.
@@ -51,7 +60,6 @@ The Duke of Florence probably arranged his collection according to the four Aris
 
 > *Enlightenment thinkers relied on the emerging tools of secular empiricism, or sense-based evidence, and proof through repetition—that is, the guiding concepts that lie at the root of modern science.*
 
-
 ![French Salon](https://miro.medium.com/max/552/0*oe1ue6xA1Fu1Mj9f.jpg)
 
 ### British Museum
@@ -63,11 +71,25 @@ British Museum is the embodiment of the Enlightenment ideas of the XVIIIth centu
 ![British Museum inside](https://numismag.com/wp-content/uploads/2019/06/british-museum.jpg)
 ![British Museum inside 2](https://upload.wikimedia.org/wikipedia/commons/6/69/Inside_the_British_Museum%2C_London_-_DSC04207.JPG)
 
-##### White Cube
+### Museums on the Rise
 
-> The sanctity of the space should be protected at all cost
+> The era of the Enlightenment gave praise to differentiation and development as tools for an empirical understanding of the universe. Museums that emerged during that time - the Capitoline (Rome, 1734), the Louvre (Paris, 1793), and the Alte Pinakothek (Munich, 1836) - reflected that outlook. 
+
+The museum corridors haused galleries that emphasized ideas of linearity and progress. The square layout of the British museum allowed the visitors to literally travel through time, as one encountered artifacts placed chronologically alongside the walls. The eighteenth century is also the time when we began to see museums dedicated to specific collections, such as art, animals, or plants. 
+
+![Natural History Museum] (https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Natural_History_Museum_HDR.jpg/800px-Natural_History_Museum_HDR.jpg)
+Caption: Natural History Museum The Museum remained part of the British Museum until 1963, but was entirely dedicated to species from the natural world.
+
+
+### White Cube
+
+The next development in the way artifacts are exhibited came from the United States, specifically New York. The Director of The Museum of Modern Art, Alfred H. Barr, advocated a “White Cube approach”. By minimizing visual distractions, the interior design of the museum - with white walls without any detail or ornamentation - allowed the viewers to truly focus on the exhibited pieces. 
+
+> The bare spaces, white walls, and minimalist frames that Barr used in the 1930s are now so common that we hardly notice them. 
 
 ![White Cube](https://live.staticflickr.com/6098/6332838690_cac651bf75_b.jpg)
+
+![Centre Pompidou](https://upload.wikimedia.org/wikipedia/commons/e/e4/Barack_Obama_tours_the_Centre_Pompidou_modern_art_museum_2.jpg) 
 
 Image sources:
 https://www.greekboston.com/culture/mythology/the-muses/

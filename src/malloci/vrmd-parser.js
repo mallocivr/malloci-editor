@@ -191,6 +191,8 @@ export default class VRMD
     parse(markDown)
     {
         console.log("parsing");
+        console.log(markDown);
+        
         
         let exJSON = {}
         exJSON.rooms = []
@@ -214,7 +216,12 @@ export default class VRMD
         for(let i = 0; i < mdLines.length; i++)
         {      
             let line = mdLines[i]
-            let words = line.split(" ")            
+            console.log(line);
+            
+            
+            let words = line.split(" ")
+            console.log(words);
+                        
 
             // Headings
             if (words[0].charAt(0) === "#" && !in_code)
@@ -251,17 +258,19 @@ export default class VRMD
                     exJSON.name = words.join(" ")
                 }
                 subJSON.name = words.join(" ")
-            }
+            }            
 
             // Block Quotes
             if (words[0].charAt(0) === ">" && !in_code)
             {
+                console.log("block quote!!");
+                
                 block_quote += words.join(" ").replace(">", "").replace(/(^[\s]+|[\s]+$)/, "\n")                                
             }
             else if (block_quote !== "")
             {
-            artifacts.push(this.parseArtifact(block_quote, "block quote"))
-            block_quote = ""
+                artifacts.push(this.parseArtifact(block_quote, "block quote"))
+                block_quote = ""
             }
 
             // Code Blocks
@@ -353,6 +362,16 @@ export default class VRMD
 
         if(subJSON.name !== null)
         {
+            if (block_quote !== "")
+            {
+                artifacts.push(this.parseArtifact(block_quote, "block quote"))
+                block_quote = ""
+            }
+            if (code_block !== "")
+            {
+                artifacts.push(this.parseArtifact(code_block, "code block"))
+                code_block = ""
+            }
             subJSON.text = text
             subJSON.artifacts = artifacts
 
@@ -370,6 +389,8 @@ export default class VRMD
 
     parseArtifact(text, type)
     {
+        console.log(text, type);
+        
         let artifact = {}
         artifact.type = type
         artifact.audioSrc = null

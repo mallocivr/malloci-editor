@@ -12,9 +12,9 @@ const props = {
       reader.onload = function(e) {
           let bits = e.target.result; 
 
-          let src = `img/${data.file.name}`
+          let src = `${data.file.name}`
 
-          localStorage.setItem(src, bits)
+          sessionStorage.setItem(src, bits)
       }
     },
     onChange(info) {

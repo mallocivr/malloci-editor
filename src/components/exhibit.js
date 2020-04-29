@@ -5,16 +5,20 @@ import { OmitProps } from "antd/lib/transfer/renderListBody"
 const exhibit = (props) => {
   
   let treeString = JSON.stringify(props.tree)
+  console.log(treeString);
+  
 
   return(
       <Scene id={props.exhibitId} vr-mode-ui="enabled: false" embedded background="color: #87ceeb">
         <a-assets>
             <a-mixin id="checkpoint"></a-mixin>
             <a-mixin id="checkpoint-hovered" color="#6CEEB5"></a-mixin>
-            <img id="wallTexture" src="https://cdn.jsdelivr.net/gh/mallocivr/Malloci/dist/textures/wall.jpg"/>
-            <img id="floorTexture" src="https://cdn.jsdelivr.net/gh/mallocivr/Malloci/dist/textures/concrete_floor.jpg"/>
-            <img id="ceilingTexture" src="https://cdn.jsdelivr.net/gh/mallocivr/Malloci/dist/textures/concrete_floor.jpg"/>
+            <img id="wallTexture" src="/textures/wall.jpg"/>
+            <img id="floorTexture" src="/textures/concrete_floor.jpg"/>
+            <img id="ceilingTexture" src="/textures/concrete_floor.jpg"/>
+            <img id="frameTexture" src="/textures/frame.jpg"/>
           </a-assets>
+          <a-sound src="src: url(/audio/light-piano-noodling-in-b.mp3)" autoplay="true" loop ="true" position="0 4 0"></a-sound>
           <a-light type="ambient" position="0 6 0" rotation="0 0 45"></a-light>
           <Entity id="rig"
                     movement-controls={{enabled: true}}
@@ -22,17 +26,17 @@ const exhibit = (props) => {
                     rotation="0 180 0">
             <a-camera id="camera"
             look-controls="pointerLockEnabled: true">
-            {/* <a-cursor></a-cursor> */}
+            <a-cursor></a-cursor>
             </a-camera>
-          <Entity laser-controls={{hand: 'left'}} raycaster={{objects: '.audio', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
-          <Entity laser-controls={{hand: 'right'}} raycaster={{objects: '.audio', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
+          <Entity laser-controls={{hand: 'left'}} raycaster={{objects: '.clickable', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
+          <Entity laser-controls={{hand: 'right'}} raycaster={{objects: '.clickable', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
         </Entity>
         <Entity id="museum" 
                 malloci={{
                   tree: treeString,
                   hallWidth: 8,
                   wallHeight: 5,
-                  // API: "https://malloci.uc.r.appspot.com/generate",
+                  API: "https://malloci.uc.r.appspot.com/generate",
                   base64Mode: props.b64,
                   debug: props.debug}}></Entity>
       </Scene>
