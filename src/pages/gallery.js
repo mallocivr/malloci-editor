@@ -19,19 +19,19 @@ const Gallery = () => (
       <Card className="card-space"
         hoverable
         style={{ width: 300 }}
-        cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Northern_lights_%289997815384%29.jpg" />}
+        cover={<img alt="example" src="/img/Maria.jpg" />}
       >
-      <Meta title="The Auroras" description="Northern lights over Iceland" />
+      <Meta title="A journey through time" description="the history of museums" />
       </Card>     
     </Link>
 
-  <Card className="card-space"
+  {/* <Card className="card-space"
     hoverable
     style={{ width: 300 }}
     cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Northern_lights_%289997815384%29.jpg" />}
   >
     <Meta title="The Other Auroras" description="Northern lights over Iceland" />
-  </Card>
+  </Card> */}
   </div>
   </Layout>
 );
