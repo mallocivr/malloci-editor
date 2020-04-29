@@ -31,9 +31,9 @@ class App extends React.Component {
   render() {
     return (
      <div id="navbar">
-       <img src={logo} id="logoformatting"></img>
+       <a href="/"><img src={logo} id="logoformatting"></img></a>
 
-      <div id="mallocititle"><h2>Malloci</h2></div>
+      <div id="mallocititle"><h2><a href="/">Malloci</a></h2></div>
 
 
     <Router>
