@@ -17,7 +17,7 @@ const Museum = () => {
   const vrmdParser = new VRMD()
 
     useEffect(() => {
-      fetch("markdown/home.md")
+      fetch("https://raw.githubusercontent.com/mallocivr/mallocivr.github.io/master/markDown/home.md")
       .then(res => res.text())
       .then(post => {
         vrmdParser.parse(post)

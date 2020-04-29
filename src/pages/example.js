@@ -22,7 +22,7 @@ const Example = () => {
     useEffect(() => {
       console.log(exhibit);
       
-      fetch(`../markdown/exhibits/${exhibit}.md`)
+      fetch(`https://raw.githubusercontent.com/mallocivr/mallocivr.github.io/master/markDown/exhibits/${exhibit}.md`)
       .then(res => res.text())
       .then(post => {        
         vrmdParser.parse(post)
