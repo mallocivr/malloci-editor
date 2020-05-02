@@ -39,8 +39,8 @@ export default class VRMD
             // Headings
             if (words[0].charAt(0) === "#" && !in_code)
             {
-                if(words[0].includes("###")) 
-                    continue
+                // if(words[0].includes("###")) 
+                //     continue
 
                 level = words.shift()
 
@@ -52,11 +52,11 @@ export default class VRMD
                     text = ""
                     artifacts = []
 
-                    if(level === "#" || level === "##")
-                    {
-                        exJSON.rooms.push(subJSON)
-                        subJSON = {}
-                    }
+                    // if(level === "#" || level === "##")
+                    // {
+                    exJSON.rooms.push(subJSON)
+                    subJSON = {}
+                    // }
                 }
                 else if (text !== "")
                 {
@@ -190,9 +190,7 @@ export default class VRMD
 
     parse(markDown)
     {
-        console.log("parsing");
-        console.log(markDown);
-        
+        console.log("parsing");        
         
         let exJSON = {}
         exJSON.rooms = []
@@ -216,18 +214,13 @@ export default class VRMD
         for(let i = 0; i < mdLines.length; i++)
         {      
             let line = mdLines[i]
-            console.log(line);
-            
-            
-            let words = line.split(" ")
-            console.log(words);
-                        
+            let words = line.split(" ")                        
 
             // Headings
             if (words[0].charAt(0) === "#" && !in_code)
             {
-                if(words[0].includes("###")) 
-                    continue
+                // if(words[0].includes("###")) 
+                //     continue
 
                 level = words.shift()
 
@@ -239,11 +232,11 @@ export default class VRMD
                     text = ""
                     artifacts = []
 
-                    if(level === "#" || level === "##")
-                    {
+                    // if(level === "#" || level === "##")
+                    // {
                         exJSON.rooms.push(subJSON)
                         subJSON = {}
-                    }
+                    // }
                 }
                 else if (text !== "")
                 {
@@ -262,9 +255,7 @@ export default class VRMD
 
             // Block Quotes
             if (words[0].charAt(0) === ">" && !in_code)
-            {
-                console.log("block quote!!");
-                
+            {                
                 block_quote += words.join(" ").replace(">", "").replace(/(^[\s]+|[\s]+$)/, "\n")                                
             }
             else if (block_quote !== "")
@@ -388,9 +379,7 @@ export default class VRMD
     }
 
     parseArtifact(text, type)
-    {
-        console.log(text, type);
-        
+    {        
         let artifact = {}
         artifact.type = type
         artifact.audioSrc = null

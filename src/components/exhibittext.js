@@ -19,8 +19,8 @@ const styles = {display: "none"};
 
 function ExhibitText() {
     const [value, setValue] = useState('I am the initial value');
-    const handleChange = (event) => {
-        setValue(event.target.value);
+    const handleChange = (event) => {        
+        setValue(event);
     };
 
     return (
@@ -40,7 +40,8 @@ function ExhibitText() {
                         onChange={handleChange}
                     />
                     <TextArea id="editor"
-                        value={value} style={styles}>
+                        value={value}
+                        style={styles}>
                     </TextArea>
 
                 </TabPane>

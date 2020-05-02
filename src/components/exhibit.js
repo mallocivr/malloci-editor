@@ -6,6 +6,9 @@ const exhibit = (props) => {
   
   let treeString = JSON.stringify(props.tree)
 
+  console.log(treeString);
+  
+
   let cursor = null
 
   if(props.b64) cursor =  <a-cursor></a-cursor>

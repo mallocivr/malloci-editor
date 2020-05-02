@@ -30,7 +30,7 @@ function Mallocieditor() {
   
     const vrmdParser = new VRMD()
     const editor = document.getElementById('editor')
-    console.log(editor.value)
+    console.log('editor value', editor)
     let tree = vrmdParser.parse(editor.value)
     setMuseumTree(tree)
     setMd(vrmdParser.cleanedMD)
