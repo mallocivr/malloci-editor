@@ -51,8 +51,8 @@ class App extends React.Component {
       </NavLink>
     </Menu.Item>
               <Menu.Item key="mallocieditor">
-                <NavLink to="/Editor">
-                  Editor
+                <NavLink to="/Playground">
+                  Playground
       </NavLink>
               </Menu.Item>
               {/* <Menu.Item key="about">
@@ -66,7 +66,7 @@ class App extends React.Component {
           <Route exact path="/">
             <Gallery />
           </Route>
-          <Route exact path="/Editor">
+          <Route exact path="/Playground">
             <Mallocieditor />
           </Route>
           <Route exact path="/Malloci">

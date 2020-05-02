@@ -18,17 +18,17 @@ const columns = [
   const data1 = [
     {
       key: '1',
-      markdown: '![caption text](path/to/file.jpg)',
+      markdown: '![caption text](uploaded-file-name.jpg)',
       rendered: '​This image will become a painting on the wall in the VR museum',
     },
     {
       key: '2',
-      markdown: '~ \n![caption text](path/to/file.jpg) \n~',
+      markdown: '~ \n![caption text](uploaded-file-name.jpg) \n~',
       rendered: 'This image will be visible in the VR museum, but not in the document view',
     },
     {
       key: '3',
-      markdown: '![this image has audio attached](path/to/file.jpg) \n^(audio-file.m4a)',
+      markdown: '![this image has audio attached](uploaded-file-name.jpg) \n^(audio-file.m4a)',
       rendered: 'This audio file will be placed in the VR exhibit and the document, attached to the image or blockquote on the line above it'
     },
     {

@@ -9,7 +9,6 @@ import { Typography } from 'antd';
 import './museum.css'
 import ReactMarkdown from "react-markdown"
 
-const heroimg = '../logo.svg'
 const Example = () => {
 
   const { exhibit } = useParams();

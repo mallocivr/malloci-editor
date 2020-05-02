@@ -30,7 +30,7 @@ function Mallocieditor() {
   
     const vrmdParser = new VRMD()
     const editor = document.getElementById('editor')
-  
+    console.log(editor.value)
     let tree = vrmdParser.parse(editor.value)
     setMuseumTree(tree)
     setMd(vrmdParser.cleanedMD)
@@ -39,7 +39,7 @@ function Mallocieditor() {
   return (
     
    <Layout >
-     <Header siteTitle={"Malloci Editor"}></Header>
+     <Header siteTitle={"Playground"}></Header>
      <div id="alertstyle">
      <Alert 
       message="Online only!"
@@ -52,7 +52,9 @@ function Mallocieditor() {
      <Col classname="gutter-col">
         <div className="description">
             <p>A web editor to view museums written in markdown.<br></br>      
-              Use the panel on the left to create your exhibit; there's a guide detailing the markdown syntax you should use. View your exhibit space in the "Exhibit" tab of panel on the right. The "Document" tab will contain an article of your exhibit instead.</p>
+            Create your exhibit in the panel on the left; there's a guide detailing the markdown syntax you should use. View your exhibit space in the "Exhibit" tab of panel on the right. The "Document" tab will contain an article of your exhibit instead.<br></br>
+            The editor area in the "Markdown" panel contains basic buttons to help you with the markdown syntax. You can click on the H icon to add a header, the link icon to link images, the blockquote icon to add a quote, and so on. In the event that you're using images from the internet in your exhibit via links, make sure that you're using images which are marked for reuse (they'll be blocked by your browser and won't show up, otherwise).
+            </p>
         </div>
     </Col>
      </Row>
