@@ -24,7 +24,7 @@ const uiConfig = {
     <Typography>
     <div className="museum">
       {/* <img className="m" src={heroimg}></img> */}
-      <div id="md_article" className="museumtext">
+      <div id="md_article" className="signin">
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
       </div>
     </div>
