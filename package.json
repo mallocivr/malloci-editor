@@ -2,6 +2,7 @@
   "name": "mallocivr",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mallocivr.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -12,6 +13,7 @@
     "antd": "^4.1.4",
     "firebase": "^7.14.2",
     "firebaseui": "^4.5.0",
+    "gh-pages": "^2.2.0",
     "highlight.js": "^10.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -24,6 +26,8 @@
     "react-simplemde-editor": "^4.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
