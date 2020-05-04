@@ -6,11 +6,28 @@ import FileDict from '../firebase/FileDictionary'
 import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
+const audioFileTypes = ['m4a', 'mp3', 'wav']
+
 const props = {
     name: 'file',
     multiple: true,
-    customRequest(data) {
-      const uploadTask = storage.ref(`/images/${data.file.name}`).put(data.file)
+    customRequest({
+      data,
+      file,
+      onError,
+      onProgress,
+      onSuccess,
+    }) {
+      let uploadTask = null
+      if(audioFileTypes.includes(file.name.split('.').pop()))
+      {
+        uploadTask = storage.ref(`/audio/${file.name}`).put(file)
+      }
+      else
+      {
+        uploadTask = storage.ref(`/images/${file.name}`).put(file)
+
+      }
 
       uploadTask.on('state_changed', 
       (snapShot) => {
@@ -19,13 +36,26 @@ const props = {
       }, (err) => {
         //catches the errors
         console.log(err)
-      }, () => {
+        onError(err, file)
+      }, (resp) => {
         // gets the functions from storage refences the image storage in firebase by the children
         // gets the download url then sets the image from firebase as the value for the imgUrl key:
-        storage.ref('images').child(data.file.name).getDownloadURL()
-        .then(fireBaseUrl => {
-          FileDict[data.file.name] = fireBaseUrl
-        })
+        if(audioFileTypes.includes(file.name.split('.').pop()))
+        {
+          storage.ref('audio').child(file.name).getDownloadURL()
+            .then(fireBaseUrl => {
+              FileDict[file.name] = fireBaseUrl
+            })
+        }
+        else
+        {
+          storage.ref('images').child(file.name).getDownloadURL()
+            .then(fireBaseUrl => {
+              FileDict[file.name] = fireBaseUrl
+            })
+        }
+        
+        onSuccess(resp, file);
       })
     },
     onChange(info) {

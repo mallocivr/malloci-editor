@@ -11,7 +11,7 @@ const exhibit = (props) => {
 
   let cursor = null
 
-  if(props.b64) cursor =  <a-cursor></a-cursor>
+  if(props.editor) cursor =  <a-cursor></a-cursor>
 
 
   return(

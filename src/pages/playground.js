@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // import './App.css';
 
 import ExhibitText from "../components/exhibittext"
@@ -13,6 +13,9 @@ import VRMD from "../malloci/vrmd-parser"
 
 import ExhibitDocument from "../components/exhibitdocument"
 import Exhibit from "../components/exhibit"
+
+import "./editor.css"
+
 
 const { TabPane } = Tabs;
 
@@ -35,6 +38,10 @@ function Mallocieditor() {
     setMuseumTree(tree)
     setMd(vrmdParser.cleanedMD)
   }
+
+  useEffect(function() {
+    updateExhibit()
+  },[])
   
   return (
     
@@ -78,7 +85,7 @@ function Mallocieditor() {
           <div className="card-container">
             <Tabs onChange={callback} type="card">
                 <TabPane id="exhibit_pane" tab="Exhibit" key="1">
-                    <Exhibit exhibitId="preview" tree={museumTree} b64={true} debug={true}/>
+                    <Exhibit exhibitId="preview" tree={museumTree} b64={true} editor={true} debug={true}/>
                 </TabPane>
         
                 <TabPane tab="Document" key="2">

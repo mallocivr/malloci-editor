@@ -294,6 +294,8 @@ export default class VRMD
             if (words[0].charAt(0) === "!" && !in_code)
             {
                 artifacts.push(this.parseArtifact(line, "image", fileDict))
+                if(fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+                    mdLines[i] = line.replace(line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")")), fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
             }
 
             // VRMD EXTENDED SYNTAX
@@ -302,6 +304,15 @@ export default class VRMD
             {
                 let field = line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]"))
                 let textureSrc = line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))
+
+                if (fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+                {
+                    textureSrc = fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))]
+                }
+                else
+                {
+                    textureSrc = line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))
+                }
 
                 if(this.VSCode && !(/^(?:\/|[a-z]+:\/\/)/.test(textureSrc)))
                 { 
@@ -334,7 +345,7 @@ export default class VRMD
             // Audio
             if (words[0].charAt(0) === "^" && !in_code)
             {
-                this.addAudio(artifacts, line)
+                this.addAudio(artifacts, line, fileDict)
                 mdLines.splice(i, 1)
                 --i
             }
@@ -428,7 +439,14 @@ export default class VRMD
 
     addAudio(artifacts, audio)
     {
-        artifacts[artifacts.length - 1].audioSrc = audio.substring(audio.lastIndexOf("(") + 1, audio.lastIndexOf(")"))
+        if (fileDict && fileDict[audio.substring(audio.lastIndexOf("(") + 1, audio.lastIndexOf(")"))])
+        {
+            artifacts[artifacts.length - 1].audioSrc = fileDict[audio.substring(audio.lastIndexOf("(") + 1, audio.lastIndexOf(")"))]
+        }
+        else
+        {
+            artifacts[artifacts.length - 1].audioSrc = audio.substring(audio.lastIndexOf("(") + 1, audio.lastIndexOf(")"))
+        }
 
         if(this.VSCode && !(/^(?:\/|[a-z]+:\/\/)/.test(artifacts[artifacts.length - 1].audioSrc)))
         {

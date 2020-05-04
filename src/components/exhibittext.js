@@ -18,7 +18,7 @@ const styles = {display: "none"};
 
 
 function ExhibitText() {
-    const [value, setValue] = useState("# Hello world! \n>Welcome to the world! \n## Hello continent \nThis is a starter exhibit. Hit build to view it in VR. The name of the museum is Hello world!. There is one room, Hello Continent. There's some wall art about baby elephants and a picture of a baby elephant in a bucket. \n>Baby elephants are endangered \n\n![baby elephants are endangered!](https://i.imgur.com/SnolApK.jpg)");
+    const [value, setValue] = useState("# Hello world! \n\n> Welcome to the world! \n\n## Hello continent \n\nThis is a starter exhibit. Hit build to view it in VR. The name of the museum is Hello world!. There is one room, Hello Continent. There's some wall art about baby elephants and a picture of a baby elephant in a bucket. \n\n> Baby elephants are endangered \n\n![baby elephants are endangered!](https://i.imgur.com/SnolApK.jpg)");
     const handleChange = (event) => {        
         setValue(event);
     };

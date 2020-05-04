@@ -51,24 +51,24 @@
   width: 100%;
 }
 
-
-
 #md_article > p > img {
   width: 100%
 }
 
 #editor3-wrapper {
-  height:73vh;    
-
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .CodeMirror {
-  height:64vh;
+  flex: 1
 }
 
 #editorheight {
-  height:80vh;    
-  box-sizing: border-box;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .markdown-container {

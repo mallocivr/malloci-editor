@@ -34,7 +34,7 @@ const App = () => {
   },[])
 
   const editor = () => {
-    if (loggedIn)
+    if (loggedIn && firebase.auth().currentUser.email.match(".*berkeley[.]edu"))
     {
       return(
         <NavLink to="/Editor">
@@ -56,6 +56,11 @@ const App = () => {
     firebase.auth().signOut()
   }
 
+  const login = () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+  }
+
   const signInOut = () => {
     if (loggedIn)
     {
@@ -68,9 +73,9 @@ const App = () => {
     else
     {
       return(
-        <NavLink to="/SignIn">
+        <a onClick={() => {login()}}>
                   Sign In
-        </NavLink>
+        </a>
       )
     }
   } 
@@ -98,9 +103,7 @@ const App = () => {
               <Menu.Item key="mallocieditor">
                 {editor()}
               </Menu.Item>
-              <Menu.Item key="signin">
-                {signInOut()}
-              </Menu.Item>
+              
 
               {/* <Menu.Item key="about">
               <NavLink to="/TheTeam">
@@ -108,6 +111,14 @@ const App = () => {
                 </NavLink>
     </Menu.Item> */}
             </Menu>
+            
+      </div>
+      <div id="signInOut">
+        <Menu>
+          <Menu.Item key="signin">
+            {signInOut()}
+          </Menu.Item>
+        </Menu>
       </div>
         <Switch>
           <Route exact path="/">
@@ -128,9 +139,9 @@ const App = () => {
           <Route exact path="/TheTeam">
             <About />
           </Route>
-          <Route exact path="/SignIn">
+          {/* <Route exact path="/SignIn">
             <SignIn />
-          </Route>
+          </Route> */}
         </Switch>
       </Router>
       

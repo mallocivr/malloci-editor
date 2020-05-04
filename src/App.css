@@ -18,3 +18,8 @@
   padding: 16px;
   padding-right:64px;
 }
+
+#signInOut{
+  display: inline-block;
+  float: right;
+}

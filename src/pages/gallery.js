@@ -22,7 +22,7 @@ const Gallery = () => {
               <Card className="card-space"
                 hoverable
                 style={{ width: 300 }}
-                cover={<img alt="example" src="/img/Maria.jpg" />}
+                cover={<img alt="example" src={doc.data().preview} />}
               >
               <Meta title={doc.data().title}/>
               </Card>     
