@@ -18,7 +18,7 @@ const styles = {display: "none"};
 
 
 function ExhibitText() {
-    const [value, setValue] = useState('I am the initial value');
+    const [value, setValue] = useState("# Hello world! \n>Welcome to the world! \n## Hello continent \nThis is a starter exhibit. Hit build to view it in VR. The name of the museum is Hello world!. There is one room, Hello Continent. There's some wall art about baby elephants and a picture of a baby elephant in a bucket. \n>Baby elephants are endangered \n\n![baby elephants are endangered!](https://i.imgur.com/SnolApK.jpg)");
     const handleChange = (event) => {        
         setValue(event);
     };
@@ -30,6 +30,7 @@ function ExhibitText() {
                     {/* <p className="description">
                         Create your exhibit in this panel; there's a guide detailing the markdown syntax you should use below. There are basic basic buttons to help you with the markdown syntax. You can click on the H icon to add a header, the link icon to link images, the blockquote icon to add a quote, and so on. In the event that you're using images from the internet in your exhibit via links, make sure that you're using images which are marked for reuse (they'll be blocked by your browser and won't show up, otherwise).
                 </p> */}
+                <div id="editorheight">
                     <MarkdownGuide />
                     <SimpleMDEReact
                         id="editor3"
@@ -43,7 +44,7 @@ function ExhibitText() {
                         value={value}
                         style={styles}>
                     </TextArea>
-
+                    </div>
                 </TabPane>
             </Tabs>
         </div>

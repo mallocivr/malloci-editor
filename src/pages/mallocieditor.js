@@ -48,12 +48,12 @@ function Mallocieditor() {
    <Layout >
      <Header siteTitle={"Playground"}></Header>
      <div id="alertstyle">
-     <Alert 
+     {/* <Alert 
       message="Online only!"
       description="This is an online editor: museums you create using this tool will not be saved! Please copy your text from the Markdown panel before you close your session."
       type="info"
       showIcon closable
-    />
+    /> */}
     </div>
      <Row>
      <Col classname="gutter-col">

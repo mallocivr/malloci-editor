@@ -57,8 +57,17 @@
   width: 100%
 }
 
-#editor {
+#editor3-wrapper {
   height:73vh;    
+
+}
+
+.CodeMirror {
+  height:64vh;
+}
+
+#editorheight {
+  height:80vh;    
   box-sizing: border-box;
 }
 
@@ -102,3 +111,6 @@
   padding-bottom: 2%;
 }
 
+#build-exhibit {
+  float: right;
+}
