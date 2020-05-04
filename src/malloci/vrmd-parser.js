@@ -1,3 +1,5 @@
+import fileDict from "../firebase/FileDictionary"
+
 export default class VRMD
 {
     constructor(VSCode = null, debug = false)
@@ -188,7 +190,7 @@ export default class VRMD
         return this.tree
     }
 
-    parse(markDown)
+    parse(markDown, fileDict = null)
     {
         console.log("parsing");        
         
@@ -291,7 +293,7 @@ export default class VRMD
             // Images
             if (words[0].charAt(0) === "!" && !in_code)
             {
-                artifacts.push(this.parseArtifact(line, "image"))
+                artifacts.push(this.parseArtifact(line, "image", fileDict))
             }
 
             // VRMD EXTENDED SYNTAX
@@ -378,7 +380,7 @@ export default class VRMD
         return this.tree
     }
 
-    parseArtifact(text, type)
+    parseArtifact(text, type, fileDict = null)
     {        
         let artifact = {}
         artifact.type = type
@@ -389,7 +391,15 @@ export default class VRMD
             default:
                 break
             case 'image':
-                artifact.src = text.substring(text.lastIndexOf("(") + 1, text.lastIndexOf(")"))
+                if (fileDict && fileDict[text.substring(text.lastIndexOf("(") + 1, text.lastIndexOf(")"))])
+                {
+                    artifact.src = fileDict[text.substring(text.lastIndexOf("(") + 1, text.lastIndexOf(")"))]
+                }
+                else
+                {
+                    artifact.src = text.substring(text.lastIndexOf("(") + 1, text.lastIndexOf(")"))
+                }
+
                 artifact.alt = text.substring(text.lastIndexOf("[") + 1, text.lastIndexOf("]"))
                 break
             case 'block quote':

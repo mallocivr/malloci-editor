@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import firebase, {database} from "../firebase/firebase"
-import FileDict from '../firebase/FileDictionary'
+// import './App.css';
 
 import ExhibitText from "../components/exhibittext"
-import ImageFiles from "../components/imagefiles"
+import PGImageFiles from "../components/pgimagefiles"
 import { Button } from 'antd';
 import { Row, Col, Tabs } from 'antd';
 import Header from "../components/header";
@@ -21,6 +20,7 @@ function callback(key) {
   console.log(key);
 }
 
+
 function Mallocieditor() {
 
   const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
@@ -30,21 +30,14 @@ function Mallocieditor() {
   
     const vrmdParser = new VRMD()
     const editor = document.getElementById('editor')
-    let tree = vrmdParser.parse(editor.value, FileDict)
+    console.log('editor value', editor)
+    let tree = vrmdParser.parse(editor.value)
     setMuseumTree(tree)
     setMd(vrmdParser.cleanedMD)
   }
-
-  const uploadExhibit = () => {
-    database.collection("exhibits").add({
-      author: firebase.auth().currentUser.displayName,
-      title: museumTree.name,
-      md: md,
-      tree: museumTree
-    });
-  }
   
   return (
+    
    <Layout >
      <Header siteTitle={"Playground"}></Header>
      <div id="alertstyle">
@@ -76,7 +69,7 @@ function Mallocieditor() {
           </div>
         
           <div className="gutter-row" id="imageupload">
-            <ImageFiles></ImageFiles>
+            <PGImageFiles></PGImageFiles>
           </div>
         
       </Col>
@@ -85,16 +78,13 @@ function Mallocieditor() {
           <div className="card-container">
             <Tabs onChange={callback} type="card">
                 <TabPane id="exhibit_pane" tab="Exhibit" key="1">
-                    <Exhibit exhibitId="preview" tree={museumTree} debug={true}/>
+                    <Exhibit exhibitId="preview" tree={museumTree} b64={true} debug={true}/>
                 </TabPane>
         
                 <TabPane tab="Document" key="2">
                     <ExhibitDocument md={md} />
                 </TabPane>
           </Tabs>
-          </div>
-          <div className="gutter-row">
-            <Button onClick={() => {uploadExhibit()}} id="create-exhibit" type="primary">Create</Button>
           </div>
         </div>
       </Col>

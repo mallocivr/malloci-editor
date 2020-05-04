@@ -1,4 +1,5 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import firebase from "./firebase/firebase"
 import './App.css'
 import {
   HashRouter as Router,
@@ -8,27 +9,71 @@ import {
 } from 'react-router-dom';
 import { Menu } from 'antd';
 import Mallocieditor from "./pages/mallocieditor"
+import Playground from "./pages/playground"
 import Museum from "./pages/museum"
 import Gallery from "./pages/gallery"
 import Example from "./pages/example"
 import About from "./pages/about"
+import SignIn from "./pages/signin"
 
 
 const logo = "./logo192.png"
 
-class App extends React.Component {
-  // state = {
-  //   current: 'home',
-  // };
+const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false)
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setLoggedIn(true)
+      }
+      else
+      {
+        setLoggedIn(false)
+      }
+   });
+  },[])
 
-  // handleClick = e => {
-  //   console.log('click ', e);
-  //   this.setState({
-  //     current: e.key,
-  //   });
-  // };
+  const editor = () => {
+    if (loggedIn)
+    {
+      return(
+        <NavLink to="/Editor">
+                  Editor
+        </NavLink>
+      )
+    }
+    else
+    {
+      return(
+        <NavLink to="/Playground">
+                  Playground
+        </NavLink>
+      )
+    }
+  } 
 
-  render() {
+  const logout = () => {
+    firebase.auth().signOut()
+  }
+
+  const signInOut = () => {
+    if (loggedIn)
+    {
+      return(
+        <a onClick={() => {logout()}}>
+                  Sign Out
+        </a>
+      )
+    }
+    else
+    {
+      return(
+        <NavLink to="/SignIn">
+                  Sign In
+        </NavLink>
+      )
+    }
+  } 
     return (
      <div id="navbar">
        <a href="/"><img src={logo} id="logoformatting"></img></a>
@@ -51,10 +96,12 @@ class App extends React.Component {
       </NavLink>
     </Menu.Item>
               <Menu.Item key="mallocieditor">
-                <NavLink to="/Playground">
-                  Playground
-      </NavLink>
+                {editor()}
               </Menu.Item>
+              <Menu.Item key="signin">
+                {signInOut()}
+              </Menu.Item>
+
               {/* <Menu.Item key="about">
               <NavLink to="/TheTeam">
                 The team
@@ -67,6 +114,9 @@ class App extends React.Component {
             <Gallery />
           </Route>
           <Route exact path="/Playground">
+            <Playground />
+          </Route>
+          <Route exact path="/Editor">
             <Mallocieditor />
           </Route>
           <Route exact path="/Malloci">
@@ -78,12 +128,14 @@ class App extends React.Component {
           <Route exact path="/TheTeam">
             <About />
           </Route>
+          <Route exact path="/SignIn">
+            <SignIn />
+          </Route>
         </Switch>
       </Router>
       
      </div>
     );
-  }
 }
 
 export default App

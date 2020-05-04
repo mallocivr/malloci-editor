@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
+import {database} from "../firebase/firebase"
 import { useParams } from 'react-router-dom';
 import hljs from "highlight.js"
-import VRMD from "../malloci/vrmd-parser"
 import Layout from "../components/layout"
 import Exhibit from "../components/exhibit"
 import { Typography } from 'antd';
@@ -16,20 +16,23 @@ const Example = () => {
   const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
   const [md, setMd] = useState('')
 
-  const vrmdParser = new VRMD()
-
     useEffect(() => {
       console.log(exhibit);
-      
-      fetch(`https://raw.githubusercontent.com/mallocivr/mallocivr.github.io/master/markDown/exhibits/${exhibit}.md`)
-      .then(res => res.text())
-      .then(post => {        
-        vrmdParser.parse(post)
-        
-        setMd(vrmdParser.cleanedMD)
-        setMuseumTree(vrmdParser.tree)
-      })
-      .catch((err) => console.error(err));
+
+      var docRef = database.collection("exhibits").doc(exhibit);
+
+      docRef.get().then(function(doc) {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+              setMd(doc.data().md)
+              setMuseumTree(doc.data().tree)
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
     }, [])
 
     useEffect(()=>{
@@ -60,10 +63,10 @@ const Example = () => {
       {/* <img className="m" src={heroimg}></img> */}
       <div id="md_article" className="museumtext">
         <ReactMarkdown source={md} renderers={{heading: HeadingRenderer}}/>
-        <Exhibit exhibitId="exhibit" tree= {museumTree} b64={false} debug={true}/>
       </div>
     </div>
     </Typography>
+    <Exhibit exhibitId="exhibit" tree= {museumTree} b64={false} debug={true}/>
   </Layout>
 )};
 
