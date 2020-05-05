@@ -1,5 +1,6 @@
 import React from "react"
 import {storage} from "../firebase/firebase"
+import { v4 as uuidv4 } from 'uuid';
 
 import FileDict from '../firebase/FileDictionary'
 
@@ -12,20 +13,19 @@ const props = {
     name: 'file',
     multiple: true,
     customRequest({
-      data,
       file,
       onError,
-      onProgress,
       onSuccess,
     }) {
+      let uuid = uuidv4();
       let uploadTask = null
       if(audioFileTypes.includes(file.name.split('.').pop()))
       {
-        uploadTask = storage.ref(`/audio/${file.name}`).put(file)
+        uploadTask = storage.ref(`/audio/${uuid + file.name}`).put(file)
       }
       else
       {
-        uploadTask = storage.ref(`/images/${file.name}`).put(file)
+        uploadTask = storage.ref(`/images/${uuid + file.name}`).put(file)
 
       }
 
@@ -42,14 +42,14 @@ const props = {
         // gets the download url then sets the image from firebase as the value for the imgUrl key:
         if(audioFileTypes.includes(file.name.split('.').pop()))
         {
-          storage.ref('audio').child(file.name).getDownloadURL()
+          storage.ref('audio').child(uuid + file.name).getDownloadURL()
             .then(fireBaseUrl => {
               FileDict[file.name] = fireBaseUrl
             })
         }
         else
         {
-          storage.ref('images').child(file.name).getDownloadURL()
+          storage.ref('images').child(uuid + file.name).getDownloadURL()
             .then(fireBaseUrl => {
               FileDict[file.name] = fireBaseUrl
             })

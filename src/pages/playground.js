@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
-// import './App.css';
+import { Redirect } from 'react-router-dom'
+
+import firebase from "../firebase/firebase"
 
 import ExhibitText from "../components/exhibittext"
 import PGImageFiles from "../components/pgimagefiles"
@@ -24,7 +26,7 @@ function callback(key) {
 }
 
 
-function Mallocieditor() {
+function Playground() {
 
   const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
   const [md, setMd] = useState('')  
@@ -42,6 +44,10 @@ function Mallocieditor() {
   useEffect(function() {
     updateExhibit()
   },[])
+
+  const goToEditor = () => {
+    if(firebase.auth().currentUser && firebase.auth().currentUser.email.match(".*berkeley[.]edu")) return <Redirect to={`/Editor`} push/>
+    }
   
   return (
     
@@ -96,9 +102,9 @@ function Mallocieditor() {
         </div>
       </Col>
     </Row>
-
+    {goToEditor()}
   </Layout>
   );
 }
 
-export default Mallocieditor;
+export default Playground;

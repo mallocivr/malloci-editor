@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import { Redirect } from 'react-router-dom'
+
 import firebase, {database} from "../firebase/firebase"
 import FileDict from '../firebase/FileDictionary'
 
@@ -29,6 +31,8 @@ function Mallocieditor() {
   const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
   const [md, setMd] = useState('')  
 
+  const [redirect, setRedirect] = useState('')
+
   const updateExhibit = () => {
     const vrmdParser = new VRMD()
     const editor = document.getElementById('editor')
@@ -42,18 +46,32 @@ function Mallocieditor() {
   },[])
 
   const uploadExhibit = () => {
+    console.log(Object.keys(FileDict));
+    
     database.collection("exhibits").add({
       author: firebase.auth().currentUser.displayName,
-      preview: FileDict[Object.keys(FileDict)[0]],
+      preview: Object.keys(FileDict).length !== 0 ? FileDict[Object.keys(FileDict)[0]] : 'img/Maria.jpg',
       title: museumTree.name,
       md: md,
       tree: museumTree
+    })
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      setRedirect(docRef.id)
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
     });
   }
+
+  const goToExhibit = () => {
+    console.log('redirect',redirect);
+    if(redirect !== '') return <Redirect to={`/Exhibits/${redirect}`} push/>
+    }
   
   return (
    <Layout >
-     <Header siteTitle={"Playground"}></Header>
+     <Header siteTitle={"Create a New Exhibit"}></Header>
      <div id="alertstyle">
      {/* <Alert 
       message="Online only!"
@@ -106,7 +124,7 @@ function Mallocieditor() {
           </div>
       </Col>
     </Row>
-
+    {goToExhibit()}
   </Layout>
   );
 }
