@@ -55,8 +55,8 @@ function Playground() {
      <Header siteTitle={"Playground"}></Header>
      <div id="alertstyle">
      <Alert 
-      message="Online only!"
-      description="This is an online editor: museums you create using this tool will not be saved! Please copy your text from the Markdown panel before you close your session."
+      message="Demo only!"
+      description="This is a demo editor: museums you create using this tool will not be saved! Please copy your text from the Markdown panel before you close your session."
       type="info"
       showIcon closable
     />
