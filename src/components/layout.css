@@ -47,12 +47,10 @@
   overflow-y: scroll;
 }
 
-#doc-preview > p > img {
-  width: 100%;
-}
-
-#md_article > p > img {
-  width: 100%
+p > img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 #editor3-wrapper {

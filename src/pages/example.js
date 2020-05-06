@@ -54,6 +54,10 @@ const Example = () => {
       return React.createElement('h' + props.level, {id: slug}, props.children)
     }
 
+    function ImageRenderer(props) {
+      return <p><img {...props} /></p>
+    }
+
 
   
   return(
@@ -62,7 +66,7 @@ const Example = () => {
     <div className="museum">
       {/* <img className="m" src={heroimg}></img> */}
       <div id="md_article" className="museumtext">
-        <ReactMarkdown source={md} renderers={{heading: HeadingRenderer}}/>
+        <ReactMarkdown source={md} renderers={{heading: HeadingRenderer, image: ImageRenderer}}/>
       </div>
     </div>
     </Typography>

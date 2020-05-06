@@ -39,6 +39,14 @@ function ExhibitText() {
                         // onChange={event => handleChange(textValue, event.target.value)}
                         // onChange = {e => setValue(e.target.value)}
                         onChange={handleChange}
+                        options={{
+                            insertTexts: {
+                                horizontalRule: ["", "\n\n-----\n\n"],
+                                image: ["\n\n![a caption describing your image](image-name", ".jpg)\n\n"],
+                                link: ["[", "](http://)"],
+                                table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+                            },
+                        }}
                     />
                     <TextArea id="editor"
                         value={value}
