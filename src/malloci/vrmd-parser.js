@@ -295,7 +295,10 @@ export default class VRMD
             {
                 artifacts.push(this.parseArtifact(line, "image", fileDict))
                 if(fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+                {
                     mdLines[i] = line.replace(line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")")), fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+                    line = mdLines[i]
+                }
             }
 
             // VRMD EXTENDED SYNTAX

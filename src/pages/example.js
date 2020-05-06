@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import Exhibit from "../components/exhibit"
 import {Tooltip, Button, Typography } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-
+  
 import './museum.css'
 import ReactMarkdown from "react-markdown"
 
