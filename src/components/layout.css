@@ -50,7 +50,7 @@
 p > img {
   max-width: 100%;
   display: block;
-  margin: 0 auto;
+  margin: 3em auto;
 }
 
 #editor3-wrapper {
