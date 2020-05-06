@@ -54,7 +54,7 @@ const Example = () => {
     function HeadingRenderer(props) {
       let children = React.Children.toArray(props.children)
       let text = children.reduce(flatten, '')
-      let slug = text.toLowerCase().replace(/[!"#$%&'()*+,./:;<=>?@[\]^`{|}~]/g,"").replace(/\W/g, '-')
+      let slug = text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=_`~()?]/g,"").replace(/[ ’]/g, '-')
       return React.createElement('h' + props.level, {id: slug}, props.children)
     }
 
