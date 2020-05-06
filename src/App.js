@@ -3,6 +3,7 @@ import firebase from "./firebase/firebase"
 import './App.css'
 import {
   HashRouter as Router,
+  Redirect,
   NavLink,
   Route,
   Switch,
@@ -14,13 +15,13 @@ import Museum from "./pages/museum"
 import Gallery from "./pages/gallery"
 import Example from "./pages/example"
 import About from "./pages/about"
-import SignIn from "./pages/signin"
 
 
 const logo = "./logo192.png"
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
+  const [redirectOnLogOut, setRedirectOnLogout] = useState(false)
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -54,11 +55,13 @@ const App = () => {
 
   const logout = () => {
     firebase.auth().signOut()
+    setRedirectOnLogout(true)
   }
 
   const login = () => {
     let provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
+    setRedirectOnLogout(false)
   }
 
   const signInOut = () => {
@@ -78,7 +81,11 @@ const App = () => {
         </a>
       )
     }
-  } 
+  }
+  
+  const RedirectRenderer = () => {
+    if(redirectOnLogOut) return <Redirect to='/' push/> 
+  }
     return (
      <div id="navbar">
        <a href="/"><img src={logo} id="logoformatting"></img></a>
@@ -136,6 +143,9 @@ const App = () => {
           <Route path="/exhibits/:exhibit">
             <Example/>
           </Route>
+          <Route path="/Editor/:id">
+            <Mallocieditor />
+          </Route>
           <Route exact path="/TheTeam">
             <About />
           </Route>
@@ -143,8 +153,9 @@ const App = () => {
             <SignIn />
           </Route> */}
         </Switch>
+        {RedirectRenderer()}
+
       </Router>
-      
      </div>
     );
 }

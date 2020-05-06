@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { Tabs } from 'antd';
 import { Input } from 'antd';
@@ -17,11 +17,15 @@ function callback(key) {
 const styles = {display: "none"};
 
 
-function ExhibitText() {
-    const [value, setValue] = useState("# Hello world! \n\n> Welcome to the world! \n\n## Hello continent \n\nThis is a starter exhibit. Hit build to view it in VR. The name of the museum is Hello world!. There is one room, Hello Continent. There's some wall art about baby elephants and a picture of a baby elephant in a bucket. \n\n> Baby elephants are endangered \n\n![baby elephants are endangered!](https://i.imgur.com/SnolApK.jpg)");
+function ExhibitText(props) {
+    const [value, setValue] = useState(props.value);
     const handleChange = (event) => {        
         setValue(event);
     };
+
+    useEffect(function(){
+        setValue(props.value)
+    },[props.value])
 
     return (
         <div className="card-container">

@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react"
-import {database} from "../firebase/firebase"
-import { useParams } from 'react-router-dom';
+import firebase, {database} from "../firebase/firebase"
+import {Link, useParams } from 'react-router-dom';
 import hljs from "highlight.js"
 import Layout from "../components/layout"
 import Exhibit from "../components/exhibit"
-import { Typography } from 'antd';
+import {Tooltip, Button, Typography } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
 import './museum.css'
 import ReactMarkdown from "react-markdown"
@@ -16,14 +17,17 @@ const Example = () => {
   const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
   const [md, setMd] = useState('')
 
-    useEffect(() => {
-      console.log(exhibit);
+  const [isOwner, setIsOwner] = useState(false)
 
+    useEffect(() => {
       var docRef = database.collection("exhibits").doc(exhibit);
 
       docRef.get().then(function(doc) {
           if (doc.exists) {
-              console.log("Document data:", doc.data());
+            if(firebase.auth().currentUser && firebase.auth().currentUser.uid === doc.data().authorID)
+            {
+              setIsOwner(true)
+            }
               setMd(doc.data().md)
               setMuseumTree(doc.data().tree)
           } else {
@@ -58,13 +62,19 @@ const Example = () => {
       return <p><img {...props} /></p>
     }
 
-
+    function checkOwnerShip(){
+      if(isOwner)
+      {
+        return <Link to={`/Editor/${exhibit}`}><Tooltip title="Edit This Exhibit"><Button type="default" shape="circle" icon={<EditOutlined />} /></Tooltip></Link>
+      }
+    }
   
   return(
   <Layout >
     <Typography>
     <div className="museum">
       {/* <img className="m" src={heroimg}></img> */}
+      {checkOwnerShip()}
       <div id="md_article" className="museumtext">
         <ReactMarkdown source={md} renderers={{heading: HeadingRenderer, image: ImageRenderer}}/>
       </div>
