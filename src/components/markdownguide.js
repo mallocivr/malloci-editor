@@ -11,7 +11,7 @@ const { Panel } = Collapse;
 const markdownguide = () => (
     <div className="markdown-container">
     <Collapse defaultActiveKey={['']}>
-        <Panel header="Extended Markdown syntax guide" id="headerstyle" key="1">
+        <Panel className="syntax-guide" header="Extended Markdown syntax guide" id="headerstyle" key="1">
             <p>Creating and formatting rooms in the museum:</p>
             <MarkdownGuideTableRooms />
             <p>Populating the room with artifacts:</p>

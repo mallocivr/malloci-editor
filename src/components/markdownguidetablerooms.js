@@ -18,18 +18,13 @@ const columns = [
   const data1 = [
     {
       key: '1',
-      markdown: '# article title',
-      rendered: 'The entire museum space',
-    },
-    {
-      key: '2',
-      markdown: '## section title',
-      rendered: 'Creates a room in the museum',
+      markdown: '# Museum Title\n## Section Title\n### Subsection Title\n...',
+      rendered: 'Create rooms in your museum.',
     },
     {
       key: '3',
       markdown: '$[walls](img.jpg) \n$[ceiling](img.jpg) \n$[floor](img.jpg)',
-      rendered: 'To change the textures of the walls, floor, or the ceiling'
+      rendered: 'set the textures of the walls, floor, or the ceiling'
     }
   ];
 
