@@ -1,5 +1,3 @@
-import fileDict from "../firebase/FileDictionary"
-
 export default class VRMD
 {
     constructor(VSCode = null, debug = false)
@@ -15,7 +13,7 @@ export default class VRMD
         
         let exJSON = {}
         exJSON.rooms = []
-        exJSON.theme = {floor: null, walls: null, ceiling: null}
+        exJSON.theme = {floor: null, walls: null, ceiling: null, frames: null}
 
         let subJSON = {}
         let artifacts = []
@@ -135,6 +133,9 @@ export default class VRMD
                     case 'ceiling':
                         exJSON.theme.ceiling = textureSrc
                         break
+                    case 'frames':
+                        exJSON.theme.frames = textureSrc
+                        break
                 }
                 mdLines.splice(i, 1)
                 --i
@@ -196,7 +197,7 @@ export default class VRMD
         
         let exJSON = {}
         exJSON.rooms = []
-        exJSON.theme = {floor: null, walls: null, ceiling: null}
+        exJSON.theme = {floor: null, walls: null, ceiling: null, frames: null}
 
         let subJSON = {}
         let artifacts = []
@@ -334,6 +335,9 @@ export default class VRMD
                     case 'ceiling':
                         exJSON.theme.ceiling = textureSrc
                         break
+                    case 'frames':
+                        exJSON.theme.frames = textureSrc
+                        break
                 }
                 mdLines.splice(i, 1)
                 --i
@@ -345,10 +349,16 @@ export default class VRMD
                 mdLines.splice(i, 1)
                 --i
             }
-            // Audio
+            // Attachments
             if (words[0].charAt(0) === "^" && !in_code)
             {
-                this.addAudio(artifacts, line, fileDict)
+                let field = line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]"))
+
+                if(field === 'frame')
+                    line = this.addFrame(artifacts, line, fileDict)
+                else
+                    line = this.addAudio(artifacts, line, fileDict)
+
                 mdLines.splice(i, 1)
                 --i
             }
@@ -399,6 +409,8 @@ export default class VRMD
         let artifact = {}
         artifact.type = type
         artifact.audioSrc = null
+        artifact.frameSrc = null
+
 
         switch(type)
         {
@@ -440,21 +452,45 @@ export default class VRMD
         return artifact
     }
 
-    addAudio(artifacts, audio)
+    addAudio(artifacts, line, fileDict)
     {
-        if (fileDict && fileDict[audio.substring(audio.lastIndexOf("(") + 1, audio.lastIndexOf(")"))])
+        if (fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
         {
-            artifacts[artifacts.length - 1].audioSrc = fileDict[audio.substring(audio.lastIndexOf("(") + 1, audio.lastIndexOf(")"))]
+            artifacts[artifacts.length - 1].audioSrc = fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))]
+            line = line.replace(line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")")), fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+
         }
         else
         {
-            artifacts[artifacts.length - 1].audioSrc = audio.substring(audio.lastIndexOf("(") + 1, audio.lastIndexOf(")"))
+            artifacts[artifacts.length - 1].audioSrc = line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))
         }
 
         if(this.VSCode && !(/^(?:\/|[a-z]+:\/\/)/.test(artifacts[artifacts.length - 1].audioSrc)))
         {
             artifacts[artifacts.length - 1].audioSrc = this.VSCode + artifacts[artifacts.length - 1].audioSrc
         }
+
+        return line
+    }
+
+    addFrame(artifacts, line, fileDict)
+    {
+        if (fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+        {
+            artifacts[artifacts.length - 1].frameSrc = fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))]
+            line = line.replace(line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")")), fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+        }
+        else
+        {
+            artifacts[artifacts.length - 1].frameSrc = line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))
+        }
+
+        if(this.VSCode && !(/^(?:\/|[a-z]+:\/\/)/.test(artifacts[artifacts.length - 1].frameSrc)))
+        {
+            artifacts[artifacts.length - 1].frameSrc = this.VSCode + artifacts[artifacts.length - 1].frameSrc
+        }
+
+        return line
     }
 }
 

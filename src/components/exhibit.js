@@ -4,10 +4,7 @@ import { OmitProps } from "antd/lib/transfer/renderListBody"
 
 const exhibit = (props) => {
   
-  let treeString = JSON.stringify(props.tree)
-
-  console.log(treeString);
-  
+  let treeString = JSON.stringify(props.tree)  
 
   let cursor = null
 
@@ -42,9 +39,8 @@ const exhibit = (props) => {
                   tree: treeString,
                   hallWidth: 8,
                   wallHeight: 5,
-                  API: "https://malloci.uc.r.appspot.com/generate",
                   base64Mode: props.b64,
-                  debug: props.debug}}></Entity>
+                  debug: true}}></Entity>
       </Scene>
 )}
 

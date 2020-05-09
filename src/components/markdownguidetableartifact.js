@@ -38,8 +38,8 @@ const columns = [
     },
     {
       key: '5',
-      markdown: '```\n// This code will be rendered as text art\nvar s = "JavaScript syntax highlighting" \n alert(s);\n```',
-      rendered: <code>// This code will be rendered as text art<br/>var s = "JavaScript syntax highlighting"<br />alert(s)</code>,
+      markdown: '```\n// This code will be rendered\n// as text art\nvar s = "JavaScript syntax highlighting" \n alert(s);\n```',
+      rendered: <code>// This code will be rendered<br/>// as text art<br/>var s = "JavaScript syntax highlighting"<br />alert(s)</code>,
     },
   ];
 

@@ -15,6 +15,7 @@ import Museum from "./pages/museum"
 import Gallery from "./pages/gallery"
 import Example from "./pages/example"
 import About from "./pages/about"
+import WikiViewer from "./pages/wikiviewer"
 
 
 const logo = "./logo192.png"
@@ -148,6 +149,9 @@ const App = () => {
           </Route>
           <Route exact path="/TheTeam">
             <About />
+          </Route>
+          <Route exact path="/WikiViewer">
+            <WikiViewer />
           </Route>
           {/* <Route exact path="/SignIn">
             <SignIn />

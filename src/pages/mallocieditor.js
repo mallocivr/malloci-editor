@@ -48,11 +48,32 @@ const Mallocieditor = () => {
 
   const [redirect, setRedirect] = useState('')
 
-  const updateExhibit = () => {
+  const updateExhibit = async () => {
     const vrmdParser = new VRMD()
     const editor = document.getElementById('editor')
     let tree = vrmdParser.parse(editor.value, FileDict)
-    setMuseumTree(tree)
+    const response = await fetch("https://malloci.uc.r.appspot.com/generate", {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'omit', // include, *same-origin, omit
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *client
+      body: JSON.stringify(tree) // body data type must match "Content-Type" header
+    })
+    if (!response.ok) {
+      console.error("bad response, loading user defined tree")
+      setMuseumTree(tree)
+    }
+    else
+    {
+      tree = await response.json()
+      setMuseumTree(tree)
+    }
     setMd(vrmdParser.cleanedMD)
   }
 
