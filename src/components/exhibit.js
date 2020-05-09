@@ -40,7 +40,7 @@ const exhibit = (props) => {
                   hallWidth: 8,
                   wallHeight: 5,
                   base64Mode: props.b64,
-                  debug: true}}></Entity>
+                  debug: props.debug}}></Entity>
       </Scene>
 )}
 
