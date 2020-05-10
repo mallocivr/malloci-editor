@@ -30,7 +30,7 @@ function Playground() {
 
   const initValue = "# Hello world! \n\n> Welcome to the world! \n\n## Hello continent \n\nThis is a starter exhibit. Hit build to view it in VR. The name of the museum is Hello world!. There is one room, Hello Continent. There's some wall art about baby elephants and a picture of a baby elephant in a bucket. \n\n> Baby elephants are endangered \n\n![baby elephants are endangered!](https://i.imgur.com/SnolApK.jpg)"
 
-  const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
+  const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null, sky: "135, 206, 235"}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
   const [md, setMd] = useState('')  
 
   const updateExhibit = () => {
@@ -38,7 +38,7 @@ function Playground() {
     const vrmdParser = new VRMD()
     const editor = document.getElementById('editor')
     console.log('editor value', editor)
-    let tree = vrmdParser.parse(editor.value)
+    let tree = vrmdParser.parse(editor.value, null, null)
     setMuseumTree(tree)
     setMd(vrmdParser.cleanedMD)
   }

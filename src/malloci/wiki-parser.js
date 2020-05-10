@@ -13,7 +13,8 @@ wiki.parse("University_of_California,_Berkeley", function(markDown){
 }) 
 
 // To include linked images in markdown use parseFull
-wiki.parseFull("University_of_California,_Berkeley", function(markDown){
+wiki.parseFull("Spain", 10, function(markDown){
+  // do something with the markdown
   console.log(markDown);
 })
 
@@ -47,7 +48,7 @@ export default class WikiParser {
       .catch(function(error){console.log(error);});
   }
   
-  parse(page, onready) {
+  parse(page, maxRooms, maxImages, onready) {
     var self = this;
     fetch(this.fetchUrl+page)
       .then(function(resp) { return resp.json();})
@@ -55,12 +56,12 @@ export default class WikiParser {
 
       var html = '<body>' + data.parse.text['*'] + '</body>'
       
-      self.htmlToMd(data.parse.title, html, false)
+      self.htmlToMd(data.parse.title, html, maxRooms, false, maxImages)
       onready(self.md.join("\n\n"));
     });
   }
   
-  parseFull(page, onready) {
+  parseFull(page, maxRooms, maxImages, onready) {
     var self = this;
     fetch(this.fetchUrl+page)
       .then(function(resp) { return resp.json();})
@@ -69,7 +70,7 @@ export default class WikiParser {
       var html = '<body>' + data.parse.text['*'] + '</body>'
       //var md = ["# " + data.parse.title]
       //md = md.concat(self.htmlToMd(html))
-      self.htmlToMd(data.parse.title, html, true)
+      self.htmlToMd(data.parse.title, html, maxRooms, true, maxImages)
       //self.md = md
       /* md = md.join("\n\n") */
       /* onready(md) */
@@ -101,9 +102,15 @@ export default class WikiParser {
     return text
   }
   
- htmlToMd(title, html, parseImages) {
+ htmlToMd(title, html, maxRooms, parseImages, maxImages) {
     // Input: HTML string
     // Returns: array of markdown strings
+    
+    var numRooms = 1; // control the number of rooms in the exhibit
+    
+    var numImages = 0;
+    if (maxImages == null) {maxImages = 500;}
+    
     this.waitForImage = 0;
     this.imgPlaceholder = {};
     var md = ["# " +title]
@@ -116,6 +123,7 @@ export default class WikiParser {
     // var paragraphs = xmlDoc.getElementsByTagName("p");
     var children = content[0].childNodes
     for (var i = 0; i < children.length; i++)  {
+            
       var node = children[i];
       
       if (node.className == "mw-empty-elt") {
@@ -123,6 +131,9 @@ export default class WikiParser {
       }
       // plain text
       if (node.nodeName == "p") {
+        // watch for stupid coordinates
+        if (node.textContent.startsWith("Coordinates: ")){continue;}
+        
         md.push(this.cleanText(node.textContent))
         
         if (!parseImages) { continue; }
@@ -130,12 +141,15 @@ export default class WikiParser {
         // look for links with images
         var links = node.getElementsByTagName("a");
         for (var linkId = 0; linkId < links.length; linkId++) {
+          // dont fecth more images if already maxed out
+          if (numImages >= maxImages){break;}
+          
           var el = links[linkId]
           var pageName = el.getAttribute("title");
           
-          // Get out befor its too late!
+          // Get out before its too late!
           // (to escape with prob 0.5 can use || Math.random() < 0.5)
-          if (pageName == null || el.className == "new" || Math.random() > 0.3) {continue}
+          if (pageName == null || el.className == "new" || pageName == "Geographic coordinate system") {continue}
           
           // Grab an image, if possible
           // - push placeholder to the md array
@@ -157,18 +171,25 @@ export default class WikiParser {
             //console.log(response);
             if ('originalimage' in response) {
               //console.log('updating artifact ' + response.title + ' ' + self.imgPlaceholder[response.title])
-              var caption = response.title;
-              if ('extract' in response) {
-                // make the first sentese of the description the image caption
-                caption = response.extract
-                caption = caption.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|")[0]
+
+              var size = Math.min(response.originalimage.height, response.originalimage.width);
+              if (size >= 400) { // only want large images
+
+                var caption = response.title;
+                if ('extract' in response) {
+                  // make caption the first sentese of the description
+                  caption = response.extract
+                  caption = caption.replace(/\n/g, '').replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|")[0]
+                }
+                self.md[self.imgPlaceholder[response.title]] = "~\n!["+caption+"]("+response.originalimage.source+"){2}\n~";
+                delete self.imgPlaceholder[response.title]; // remove from queue
               }
-              self.md[self.imgPlaceholder[response.title]] = "~\n!["+caption+"]("+response.originalimage.source+")\n~";
-              delete self.imgPlaceholder[response.title]; // remove from queue
               
             }
             self.waitForImage--; // remove from queue
           }); 
+          
+          numImages++;
         }
         
       }
@@ -177,23 +198,43 @@ export default class WikiParser {
       else if (node.nodeName.startsWith("h")) {
         var header = this.cleanText(node.textContent)
         // if reached References - time to peace out
-        if (header == "References") {
+        // TODO also "see also" and "notes"
+        if (header == "References" ||
+            header == "See also" ||
+            header == "Notes") {
             break;
         }
+        
+        // also if parsed too many images already - 
+        // don't parse any new rooms
+        /* if (numImages >= maxImages){break;} */
+        numImages = 0 // reset image count
+        
+        // dont parse more than maxRooms
+        numRooms++;
+        if (maxRooms != null && numRooms > maxRooms) {
+          break;
+        }
+        
         var pref = "#".repeat(parseInt(node.nodeName.charAt(1)))
         md.push(pref + " " + header)
       }
       
       // images
       else if (node.nodeName === "div" && node.className.includes("thumb")) {
+      
+        // dont fecth more images if already maxed out
+        if (numImages >= maxImages){continue;}
+          
         var images = node.getElementsByTagName("img")
         var captions = node.getElementsByClassName("thumbcaption")
         
         for (var j = 0; j < images.length; j++) {
           var w = images[j].getAttribute('data-file-width') // max width of image
           var src = "https:" + images[j].getAttribute('src').replace(/\d+px/, w+'px')
-          // md.push("!["+this.cleanText(captions[j].textContent)+"]("+src+")")
-          md.push("!["+this.cleanText(captions[j] ? captions[j].textContent : "") +"]("+src+")")
+          //md.push("!["+this.cleanText(captions[j].textContent)+"]("+src+")")
+          md.push("!["+this.cleanText(captions[j] ? captions[j].textContent : "") +"]("+src+"){1}")
+          numImages++;
         }
       }
       

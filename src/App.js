@@ -13,6 +13,7 @@ import Mallocieditor from "./pages/mallocieditor"
 import Playground from "./pages/playground"
 import Museum from "./pages/museum"
 import Gallery from "./pages/gallery"
+import Home from "./pages/Home"
 import Example from "./pages/example"
 import About from "./pages/about"
 import WikiViewer from "./pages/wikiviewer"
@@ -40,7 +41,7 @@ const App = () => {
     {
       return(
         <NavLink to="/Editor">
-                  Editor
+                  Create
         </NavLink>
       )
     }
@@ -99,15 +100,15 @@ const App = () => {
         
             <Menu mode="horizontal">
               <Menu.Item key="gallery">
-                <NavLink to="/">
+                <NavLink to="/Gallery">
                   Gallery
-      </NavLink>
+                </NavLink>
               </Menu.Item>
               <Menu.Item key="museum">
-              <NavLink to="/Malloci">
-              About Malloci
-      </NavLink>
-    </Menu.Item>
+                <NavLink to="/Malloci">
+                About Malloci
+                </NavLink>
+              </Menu.Item>
               <Menu.Item key="mallocieditor">
                 {editor()}
               </Menu.Item>
@@ -129,7 +130,10 @@ const App = () => {
         </Menu>
       </div>
         <Switch>
-          <Route exact path="/">
+        <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/Gallery">
             <Gallery />
           </Route>
           <Route exact path="/Playground">

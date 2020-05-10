@@ -9,7 +9,7 @@ import Header from "../components/header";
 
 const { Meta } = Card;
 
-const Gallery = () => {
+const Home = () => {
   const [tiles, setTiles] = useState([])
 
   useEffect(function() {
@@ -37,9 +37,9 @@ const Gallery = () => {
   
   return(
     <Layout >
-     <Header siteTitle={"The Malloci Gallery"} ></Header>
+     <Header siteTitle={"Malloci - VR you can understand"} ></Header>
     <div className="description">
-        <p>A curation of VR museums generated using Malloci.</p>
+        <p>Malloci makes creating VR experiences for the web fast and easy.</p>
     </div>
     <div className="mastercard">
     <Link to={`/WikiViewer`}>
@@ -64,4 +64,4 @@ const Gallery = () => {
 )};
 
 
-export default Gallery
+export default Home

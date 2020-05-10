@@ -136,6 +136,9 @@ export default class VRMD
                     case 'frames':
                         exJSON.theme.frames = textureSrc
                         break
+                    case 'sky':
+                        exJSON.theme.sky = textureSrc
+                        break
                 }
                 mdLines.splice(i, 1)
                 --i
@@ -191,13 +194,13 @@ export default class VRMD
         return this.tree
     }
 
-    parse(markDown, fileDict = null)
+    parse(markDown, maxRooms, maxImages, fileDict = null)
     {
         console.log("parsing");        
         
         let exJSON = {}
         exJSON.rooms = []
-        exJSON.theme = {floor: null, walls: null, ceiling: null, frames: null}
+        exJSON.theme = {floor: null, walls: null, ceiling: null, frames: null, sky: null}
 
         let subJSON = {}
         let artifacts = []
@@ -211,7 +214,12 @@ export default class VRMD
         let in_code = false
 
         let hidden_block = false
+        let h3_count = (markDown.match(/\n### /g) || []).length;
+        console.log('###',h3_count);
 
+        let roomCount = 0
+        let imageCount = 0
+        
         let mdLines = markDown.split('\n')
 
         for(let i = 0; i < mdLines.length; i++)
@@ -222,10 +230,13 @@ export default class VRMD
             // Headings
             if (words[0].charAt(0) === "#" && !in_code)
             {
-                // if(words[0].includes("###")) 
-                //     continue
+                if (maxRooms && words[0].includes("###") && h3_count > maxRooms) continue
+                roomCount++
+                if (maxRooms && roomCount > maxRooms) break
+
 
                 level = words.shift()
+
 
                 if(subJSON.name !== null)
                 {
@@ -239,6 +250,7 @@ export default class VRMD
                     // {
                         exJSON.rooms.push(subJSON)
                         subJSON = {}
+                        imageCount = 0
                     // }
                 }
                 else if (text !== "")
@@ -292,14 +304,21 @@ export default class VRMD
             }            
 
             // Images
-            if (words[0].charAt(0) === "!" && !in_code)
+            if (words[0].charAt(0) === "!" &&!in_code)
             {
+                if (maxImages)
+                {
+                    let priority = line.substring(line.lastIndexOf("{") + 1, line.lastIndexOf("}"))
+                    if (priority > 1 || imageCount > maxImages) continue
+                }
                 artifacts.push(this.parseArtifact(line, "image", fileDict))
                 if(fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
                 {
                     mdLines[i] = line.replace(line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")")), fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
                     line = mdLines[i]
                 }
+
+                imageCount++
             }
 
             // VRMD EXTENDED SYNTAX
@@ -309,7 +328,7 @@ export default class VRMD
                 let field = line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]"))
                 let textureSrc = line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))
 
-                if (fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
+                if (field != 'sky' && fileDict && fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))])
                 {
                     textureSrc = fileDict[line.substring(line.lastIndexOf("(") + 1, line.lastIndexOf(")"))]
                 }
@@ -337,6 +356,9 @@ export default class VRMD
                         break
                     case 'frames':
                         exJSON.theme.frames = textureSrc
+                        break
+                    case 'sky':
+                        exJSON.theme.sky = textureSrc
                         break
                 }
                 mdLines.splice(i, 1)
@@ -372,6 +394,7 @@ export default class VRMD
             {
                 mdLines.splice(i, 1)
                 --i
+                continue
             }
 
             text += line + '\n'
@@ -394,7 +417,6 @@ export default class VRMD
 
             text = ""
             artifacts = []
-
             exJSON.rooms.push(subJSON)
             subJSON = {}
         }        

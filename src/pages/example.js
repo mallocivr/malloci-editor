@@ -14,7 +14,7 @@ const Example = () => {
 
   const { exhibit } = useParams();
 
-  const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
+  const [museumTree, setMuseumTree] = useState({ theme: {floor: null, frames: null, walls: null, ceiling: null, sky: '255,0,0'}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
   const [md, setMd] = useState('')
 
   const [isOwner, setIsOwner] = useState(false)
@@ -74,8 +74,8 @@ const Example = () => {
     <Typography>
     <div className="museum">
       {/* <img className="m" src={heroimg}></img> */}
-      {checkOwnerShip()}
       <div id="md_article" className="museumtext">
+        {checkOwnerShip()}
         <ReactMarkdown source={md} renderers={{heading: HeadingRenderer, image: ImageRenderer}}/>
       </div>
     </div>

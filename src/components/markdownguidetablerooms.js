@@ -22,9 +22,19 @@ const columns = [
       rendered: 'Create rooms in your museum.',
     },
     {
+      key: '2',
+      markdown: '![caption text](img.jpg)',
+      rendered: '​The image will be framed and hung on the wall in the exhibit',
+    },
+    {
       key: '3',
-      markdown: '$[walls](img.jpg) \n$[ceiling](img.jpg) \n$[floor](img.jpg)',
-      rendered: 'set the textures of the walls, floor, or the ceiling'
+      markdown: '> Block quote\n\n> Multi line\n> block quote',
+      rendered: '​This text will become a descriptive panel, adding context to your exhibit',
+    },
+    {
+      key: '4',
+      markdown: '```\n// This code will be rendered\n// as text art\nvar s = "JavaScript syntax highlighting" \n alert(s);\n```',
+      rendered: <code>// This code will be rendered<br/>// as text art<br/>var s = "JavaScript syntax highlighting"<br />alert(s)</code>,
     }
   ];
 
@@ -39,7 +49,6 @@ const markdownguidetablerooms = () => (
     // title={() => 'Header'}
     // footer={() => 'Footer'}
   />
-  <p id="panelstyle">While uploading and using image textures for the walls, ceiling and floor, it is recommended that you crop your textures so that the dimensions are powers of 2 for performance reasons.</p>
   </div>
 );
 
