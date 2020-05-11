@@ -33,6 +33,8 @@ const WikiViewer = () => {
   const onSelect = (data) => {
     console.log('onSelect', data);
     wikiParser.parseFull(data.replace(/ /g, "_"), null, null, async function(markDown){
+        console.log('markDown', markDown);
+        
         
         let tree = vrmdParser.parse(markDown, 10, 3)
         tree.maxPerRoom = 4
