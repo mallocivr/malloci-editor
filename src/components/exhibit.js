@@ -36,6 +36,11 @@ const exhibit = (props) => {
           <Entity laser-controls={{hand: 'left'}} raycaster={{objects: '.clickable', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
           <Entity laser-controls={{hand: 'right'}} raycaster={{objects: '.clickable', far: 3}} teleport-controls={{collisionEntities: '.scenery', drawForAllCollisions: false, landingMaxAngle: 45, button: 'trigger', cameraRig: '#rig', teleportOrigin: '#camera'}}></Entity>
         </Entity>
+        <a-entity 
+          instructions="src: /img/instructions.png; width:2; height: 0.912"
+          position="2.3 1.5 8"
+          rotation="0 150 0"
+        ></a-entity>
         <Entity id="museum" 
                 malloci={{
                   tree: treeString,
