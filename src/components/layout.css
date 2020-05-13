@@ -1,6 +1,8 @@
 @import '~antd/dist/antd.css';
 .gutter-col {
     padding: 16px 16px;
+    max-width: 100%;
+    flex: 1 0 50%;
 }
 
 .gutter-row {

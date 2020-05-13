@@ -12,6 +12,7 @@ import { Alert } from 'antd';
 import Layout from "../components/layout"
 
 import VRMD from "../malloci/vrmd-parser"
+import MediaQuery from 'react-responsive'
 
 import ExhibitDocument from "../components/exhibitdocument"
 import Exhibit from "../components/exhibit"
@@ -47,6 +48,84 @@ function Playground() {
     updateExhibit()
   },[])
 
+  const ScreenSizeRender = () => (
+    <div>
+      <MediaQuery minDeviceWidth={1224}>
+        <Row>
+          <Col className="gutter-col" span={12}>
+            <div className="gutter-row" id="exhibittext">
+              <div className="card-container">
+                <Tabs onChange={callback} type="card">
+                  <TabPane tab="Markdown" key="1">
+                    <ExhibitText value={initValue} />
+                  </TabPane>
+                </Tabs>
+              </div>
+            </div>
+
+            <div className="gutter-row">
+              <Button onClick={() => { updateExhibit() }} id="build-exhibit" type="primary">Build</Button>
+            </div>
+
+            <div className="gutter-row" id="imageupload">
+            <PGImageFiles></PGImageFiles>
+          </div>
+
+          </Col>
+          <Col className="gutter-col" span={12}>
+            <div className="gutter-row" id="exhibitmaster">
+              <div className="card-container">
+                <Tabs onChange={callback} type="card">
+                  <TabPane id="exhibit_pane" tab="Exhibit" key="1">
+                    <Exhibit exhibitId="preview" tree={museumTree} b64={true} editor={true} debug={true} />
+                  </TabPane>
+
+                  <TabPane tab="Document" key="2">
+                    <ExhibitDocument md={md} />
+                  </TabPane>
+                </Tabs>
+              </div>
+            </div>
+    
+          </Col>
+        </Row>
+      </MediaQuery>
+      <MediaQuery maxDeviceWidth={1224}>
+        <div>
+          {/* <h2>Small</h2> */}
+          <Row>
+            <Col className="gutter-col" span={12}>
+              <div className="gutter-row" id="exhibitmaster">
+                <div className="card-container">
+                  <Tabs onChange={callback} type="card">
+                    <TabPane id="exhibittext" tab="Markdown" key="1">
+                      <ExhibitText value={initValue} />
+                    </TabPane>
+                    <TabPane id="exhibit_pane" tab="Exhibit" key="2">
+                      <Exhibit exhibitId="preview" tree={museumTree} b64={true} editor={true} debug={true} />
+                    </TabPane>
+
+                    <TabPane tab="Document" key="3">
+                      <ExhibitDocument md={md} />
+                    </TabPane>
+                  </Tabs>
+                </div>
+              </div>
+              <div className="gutter-button">
+                <Button onClick={() => { updateExhibit() }} id="build-exhibit" type="primary">Build</Button>
+                
+              </div>
+
+              <div className="gutter-row" id="imageupload">
+            <PGImageFiles></PGImageFiles>
+          </div>
+            </Col>
+          </Row>
+        </div>
+      </MediaQuery>
+    </div>
+  )
+
   const goToEditor = () => {
     if(firebase.auth().currentUser && firebase.auth().currentUser.email.match(".*berkeley[.]edu")) return <Redirect to={`/Editor`} push/>
     }
@@ -73,37 +152,7 @@ function Playground() {
         </div>
     </Col>
      </Row>
-    <Row>
-      <Col className="gutter-col" span={12}>
-          <div className="gutter-row" id="exhibittext">
-            <ExhibitText value = {initValue} />
-          </div>
-
-          <div className="gutter-row">
-            <Button onClick={() => {updateExhibit()}} id="build-exhibit" type="primary">Build</Button>
-          </div>
-        
-          <div className="gutter-row" id="imageupload">
-            <PGImageFiles></PGImageFiles>
-          </div>
-        
-      </Col>
-      <Col className="gutter-col" span={12}>
-      <div id="exhibitmaster">
-          <div className="card-container">
-            <Tabs onChange={callback} type="card">
-                <TabPane id="exhibit_pane" tab="Exhibit" key="1">
-                    <Exhibit exhibitId="preview" tree={museumTree} b64={true} editor={true} debug={true}/>
-                </TabPane>
-        
-                <TabPane tab="Document" key="2">
-                    <ExhibitDocument md={md} />
-                </TabPane>
-          </Tabs>
-          </div>
-        </div>
-      </Col>
-    </Row>
+    {ScreenSizeRender()}
     {goToEditor()}
   </Layout>
   );

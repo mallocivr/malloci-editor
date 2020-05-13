@@ -11,55 +11,47 @@ const { TextArea } = Input;
 const { TabPane } = Tabs;
 
 function callback(key) {
-  console.log(key);
+    console.log(key);
 }
 
-const styles = {display: "none"};
+const styles = { display: "none" };
 
 
 function ExhibitText(props) {
     const [value, setValue] = useState(props.value);
-    const handleChange = (event) => {        
+    const handleChange = (event) => {
         setValue(event);
     };
 
-    useEffect(function(){
+    useEffect(function () {
         setValue(props.value)
-    },[props.value])
+    }, [props.value])
 
     return (
-        <div className="card-container">
-            <Tabs onChange={callback} type="card">
-                <TabPane tab="Markdown" key="1">
-                    {/* <p className="description">
-                        Create your exhibit in this panel; there's a guide detailing the markdown syntax you should use below. There are basic basic buttons to help you with the markdown syntax. You can click on the H icon to add a header, the link icon to link images, the blockquote icon to add a quote, and so on. In the event that you're using images from the internet in your exhibit via links, make sure that you're using images which are marked for reuse (they'll be blocked by your browser and won't show up, otherwise).
-                </p> */}
-                <div id="editorheight">
-                    <MarkdownGuide />
-                    <SimpleMDEReact
-                        id="editor3"
-                        label="Markdown Editor"
-                        value={value}
-                        // onChange={event => handleChange(textValue, event.target.value)}
-                        // onChange = {e => setValue(e.target.value)}
-                        onChange={handleChange}
-                        options={{
-                            insertTexts: {
-                                horizontalRule: ["", "\n\n-----\n\n"],
-                                image: ["\n\n![a caption describing your image](image-name", ".jpg)\n\n"],
-                                link: ["[", "](http://)"],
-                                table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
-                            },
-                        }}
-                    />
-                    <TextArea id="editor"
-                        value={value}
-                        style={styles}>
-                    </TextArea>
-                    </div>
-                </TabPane>
-            </Tabs>
+        <div id="editorheight">
+            <MarkdownGuide />
+            <SimpleMDEReact
+                id="editor3"
+                label="Markdown Editor"
+                value={value}
+                // onChange={event => handleChange(textValue, event.target.value)}
+                // onChange = {e => setValue(e.target.value)}
+                onChange={handleChange}
+                options={{
+                    insertTexts: {
+                        horizontalRule: ["", "\n\n-----\n\n"],
+                        image: ["\n\n![a caption describing your image](image-name", ".jpg)\n\n"],
+                        link: ["[", "](http://)"],
+                        table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+                    },
+                }}
+            />
+            <TextArea id="editor"
+                value={value}
+                style={styles}>
+            </TextArea>
         </div>
+
 
     )
 };

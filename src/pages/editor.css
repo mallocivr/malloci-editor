@@ -6,3 +6,7 @@
     max-height: 50vh;
     overflow-y: scroll;
 }
+
+.gutter-button > *{
+    margin: 0 3%;
+}
