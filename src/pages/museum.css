@@ -9,3 +9,9 @@
   /* margin: 4%; */
   padding:4%;
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .museumtext {
+    max-width: 100%;
+}
+}
