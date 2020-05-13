@@ -15,3 +15,10 @@
     max-width: 100%;
 }
 }
+
+#wiki-exhibit > .a-enter-vr{
+  display: none;
+}
+#exhibit > .a-enter-vr{
+  display: none;
+}

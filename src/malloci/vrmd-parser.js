@@ -394,7 +394,6 @@ export default class VRMD
             {
                 mdLines.splice(i, 1)
                 --i
-                continue
             }
 
             text += line + '\n'
