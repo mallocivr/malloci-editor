@@ -23,3 +23,37 @@
   display: inline-block;
   float: right;
 }
+
+#splash {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  width: 200px;
+  height: 200px;
+
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.loading {
+  width: 75px;
+  height: 75px;
+  animation: spin 1s infinite linear;
+}

@@ -12,8 +12,11 @@ const exhibit = (props) => {
 
   if(props.editor) cursor =  <a-cursor></a-cursor>
 
-
   return(
+    <div>
+      <div id="splash">
+          <img class="loading" src='logo192.png'/>
+      </div>
       <Scene id={props.exhibitId} vr-mode-ui="enabled: false" embedded background={`color: ${color}`}>
         <a-assets>
             <a-mixin id="checkpoint"></a-mixin>
@@ -48,6 +51,7 @@ const exhibit = (props) => {
                   base64Mode: props.b64,
                   debug: props.debug}}></Entity>
       </Scene>
+    </div>
 )}
 
 export default exhibit
