@@ -2,6 +2,11 @@ import React, {useState} from "react"
 import Layout from "../components/layout"
 import "./gallery.css"
 import { Card } from 'antd';
+import Masha from '../images/Masha.png'
+import Michael from '../images/Michael.png'
+import Yejun from '../images/Yejun.png'
+import Jennifer from '../images/Jennifer.png'
+import Sharanya from '../images/Sharanya.png'
 
 import Header from "../components/header";
 
@@ -13,46 +18,48 @@ const About = () => (
     <div className="description">
         <p>The team behind Malloci</p>
     </div>
-    <div className="mastercard">
+    <div className="mastercard" style={{textAlign: 'center'}}>
 <Card className="card-space"
     hoverable
-    style={{ width: 500 }}
-    cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Northern_lights_%289997815384%29.jpg" />}
+    style={{ width: 300, padding: 20 }}
+    cover={<img alt="Michael" src={Michael} />}
   >
-    <Meta title="Masha Belyi" description="NLP Engineer" />
+    <Meta title="Michael Gutensohn" description="An AR/VR Developer and amateur photographer" style={{ textAlign: 'center' }}/>
   </Card>
 
   <Card className="card-space"
     hoverable
-    style={{ width: 500 }}
-    cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Northern_lights_%289997815384%29.jpg" />}
+    style={{ width: 300, padding: 20 }}
+    cover={<img alt="Michael" src={Masha} />}
   >
-    <Meta title="Michael Gutensohn" description="Product Owner + VR Software Engineer" />
+    <Meta title="Masha Belyi" description="An NLP engineer, constantly trying to understand language" style={{ textAlign: 'center'}}/>
   </Card>
 
   <Card className="card-space"
     hoverable
-    style={{ width: 500 }}
-    cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Northern_lights_%289997815384%29.jpg" />}
+    style={{ width: 300, padding: 20 }}
+    cover={<img alt="Yejun" src={Yejun} />}
   >
-    <Meta title="Jennifer Momoh" description="Quantitative UX Researcher" />
+    <Meta title="Yejun Wu" description="An art historian turned UX Designer and product enthusiast" style={{ textAlign: 'center'}}/>
   </Card>
 
   <Card className="card-space"
     hoverable
-    style={{ width: 500 }}
-    cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Northern_lights_%289997815384%29.jpg" />}
+    style={{ width: 300, padding: 20 }}
+    cover={<img alt="Jennifer" src={Jennifer} />}
   >
-    <Meta title="Sharanya Soundararajan" description="Rabbit" />
+    <Meta title="Jennifer Momoh" description="A data scientist with a passion for social research" style={{ textAlign: 'center' }}/>
   </Card>
 
   <Card className="card-space"
     hoverable
-    style={{ width: 500 }}
-    cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Northern_lights_%289997815384%29.jpg" />}
+    style={{ width: 300, padding: 20 }}
+    cover={<img alt="Sharanya" src={Sharanya} />}
   >
-    <Meta title="Yejun Wu" description="VR Experience Designer" />
+    <Meta title="Sharanya Soundararajan" description="A rabbit" style={{ textAlign: 'center' }}/>
   </Card>
+
+
   </div>
   </Layout>
 );
