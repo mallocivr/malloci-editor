@@ -17,7 +17,7 @@ const exhibit = (props) => {
       <div id="splash">
           <img class="loading" src='logo192.png'/>
       </div>
-      <Scene id={props.exhibitId} vr-mode-ui="enabled: true" embedded background={`color: ${color}`}>
+      <Scene id={props.exhibitId} vr-mode-ui="enabled: false" embedded background={`color: ${color}`}>
         <a-assets>
             <a-mixin id="checkpoint"></a-mixin>
             <a-mixin id="checkpoint-hovered" color="#6CEEB5"></a-mixin>

@@ -10,10 +10,12 @@ import './wiki.css'
 
 const WikiViewer = () => {
 
-  const [museumTree, setMuseumTree] = useState({ theme: {floor: null, walls: null, ceiling: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
+  const [museumTree, setMuseumTree] = useState({ theme: {floor: "/textures/wiki-floor.jpg", walls: "/textures/wiki-wall.jpg", ceiling: "/textures/wiki-ceiling.jpg", frames: "/textures/wiki-frame.jpg", sky: null}, rooms: [{name:"1", artifacts: []}, {name:"2", artifacts:[]}]})  
 
   const wikiParser = new WikiParser()
   const vrmdParser = new VRMD()
+
+  const theme = {floor: "/textures/wiki-floor.jpg", walls: "/textures/wiki-wall.jpg", ceiling: "/textures/wiki-ceiling.jpg", frames: "/textures/wiki-frame.jpg", sky: null}
 
   const [value, setValue] = useState('');
   const [options, setOptions] = useState([]);
@@ -38,7 +40,9 @@ const WikiViewer = () => {
         
         let tree = vrmdParser.parse(markDown, 10, 3)
         tree.maxPerRoom = 4
-        console.log(JSON.stringify(tree));
+        tree.theme = theme
+
+
 
         const response = await fetch("https://malloci.uc.r.appspot.com/generate", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
