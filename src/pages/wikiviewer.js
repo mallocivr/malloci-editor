@@ -42,8 +42,6 @@ const WikiViewer = () => {
         tree.maxPerRoom = 4
         tree.theme = theme
 
-
-
         const response = await fetch("https://malloci.uc.r.appspot.com/generate", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
