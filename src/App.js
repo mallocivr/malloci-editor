@@ -112,13 +112,11 @@ const App = () => {
               <Menu.Item key="mallocieditor">
                 {editor()}
               </Menu.Item>
-              
-
               <Menu.Item key="about">
               <NavLink to="/TheTeam">
-                The team
+                The Team
                 </NavLink>
-    </Menu.Item>
+            </Menu.Item>
             </Menu>
             
       </div>
@@ -126,6 +124,11 @@ const App = () => {
         <Menu>
           <Menu.Item key="signin">
             {signInOut()}
+          </Menu.Item>
+          <Menu.Item key="about">
+            <a href="https://rb.gy/enkzp7">
+                Feedback
+            </a>
           </Menu.Item>
         </Menu>
       </div>
